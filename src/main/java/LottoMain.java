@@ -1,3 +1,5 @@
+import domain.LottoNumber;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,9 +11,11 @@ public class LottoMain {
 
         Scanner scan = new Scanner(System.in);
 
+        System.out.println("구매금액을 입력해 주세요.");
+
         int totalAmount = scan.nextInt();
         int totalLottoCount = totalAmount / LOTTO_PRICE;
-        List<String> lottoList = LottoUtil.manualNumCreate();
+        List<LottoNumber> lottoList = LottoUtil.manualNumCreate();
 
 
 //        String str = "1,23,55,4,10";
