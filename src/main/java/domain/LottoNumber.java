@@ -1,37 +1,34 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class LottoNumber {
 
-    private Integer[] lottoNumbers = new Integer[6];
-    private int inputSize = 0;
+    private List<Integer> lottoNumbers = new ArrayList<>();
+
 
     public LottoNumber() {
     }
 
     public void add(int lottoNumber){
-        if (inputSize > 5){
+        if (lottoNumbers.size() > 5){
             //에러만들예정
         }
-        lottoNumbers[inputSize] = lottoNumber;
-        inputSize++;
+        lottoNumbers.add(lottoNumber);
     }
 
-    public int size(){
-        return this.inputSize;
-    }
-
-    public Integer[] getLottoNumber() {
+    public List<Integer> getLottoNumber() {
         return lottoNumbers;
     }
 
-    public void setLottoNumber(Integer[] lottoNumber) {
+    public void setLottoNumber(List<Integer> lottoNumber) {
         this.lottoNumbers = lottoNumber;
     }
 
     @Override
     public String toString() {
-        return Arrays.toString(lottoNumbers);
+        return lottoNumbers.toString();
     }
 }

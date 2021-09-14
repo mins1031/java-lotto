@@ -1,4 +1,5 @@
 import domain.LottoNumber;
+import domain.LottoResult;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,15 +24,13 @@ public class LottoMain {
         scan.nextLine();
 
         System.out.println("수동으로 구매할 번호를 입력해 주세요.");
-        List<String> lottoInputList = new ArrayList<>();
+        List<LottoNumber> lottoList = new ArrayList<>();
         for (int i = 0; i < manualLottoCount; i++) {
-            lottoInputList.add(scan.nextLine());
+            String manualNum = scan.nextLine();
+            lottoList.add(LottoUtil.lottoNumberParser(manualNum));
         }
 
         int autoLottoCount = totalLottoCount - manualLottoCount;
-
-        // add manual
-        List<LottoNumber> lottoList = LottoUtil.lottoNumberParser(lottoInputList);
 
         // merge auto
         lottoList.addAll(LottoUtil.autoNumCreate(autoLottoCount));
@@ -47,6 +46,15 @@ public class LottoMain {
 
         System.out.println("보너스 볼을 입력해 주세요.");
         int bonusBall = scan.nextInt();
+
+        LottoResult lottoResult = new LottoResult(winNumbers,bonusBall);
+        lottoResult.winResult(lottoList);
+
+        System.out.println("");
+        System.out.println("당첨 통계");
+        System.out.println("---------");
+        System.out.println(lottoResult.toString());
+
 
     }
 }

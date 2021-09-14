@@ -4,19 +4,14 @@ import java.util.*;
 
 public class LottoUtil {
 
-    public static List<LottoNumber> lottoNumberParser(List<String> lottoInputList){
-        List<LottoNumber> lottoList = new ArrayList<>();
+    public static LottoNumber lottoNumberParser(String lottoInput){
+        LottoNumber lotto = new LottoNumber();
 
-        for (String lottoInput : lottoInputList) {
-            LottoNumber lotto = new LottoNumber();
-
-            for (String splitNum : lottoInput.split(", ")) {
-                lotto.add(Integer.parseInt(splitNum));
-            }
-            lottoList.add(lotto);
+        for (String splitNum : lottoInput.split(", ")) {
+            lotto.add(Integer.parseInt(splitNum));
         }
 
-        return lottoList;
+        return lotto;
     }
 
     public static List<LottoNumber> autoNumCreate(int autoLottoCount) {
@@ -35,13 +30,13 @@ public class LottoUtil {
     }
 
     public static List<Integer> getRandomNumList() {
-        Set<Integer> temp = new TreeSet<>();
+        Set<Integer> tempSet = new TreeSet<>();
 
-        while(temp.size() != 6) {
-            temp.add(new Random().nextInt(45) + 1);
+        while(tempSet.size() != 6) {
+            tempSet.add(new Random().nextInt(45) + 1);
         }
 
-        List<Integer> nonDupList = new ArrayList<>(temp);
+        List<Integer> nonDupList = new ArrayList<>(tempSet);
 
         return nonDupList;
     }
