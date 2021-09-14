@@ -2,7 +2,6 @@ import domain.LottoNumber;
 import domain.LottoResult;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -49,6 +48,7 @@ public class LottoMain {
 
         LottoResult lottoResult = new LottoResult(winNumbers,bonusBall);
         lottoResult.winResult(lottoList);
+        lottoResult.calculateBenefitRate(totalAmount);
 
         System.out.println("");
         System.out.println("당첨 통계");
