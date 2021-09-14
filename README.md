@@ -51,18 +51,57 @@
 - 페이프로그래밍과 논의로 구현.
 
 ## 기능목록
-- 1. 구입 금액 입력 받기
-     -> Scanner로 입력 받아 저장
-     -> 구입급액 / 1000로 총 갯수 명시
-- 2. 수동 갯수 입력 받기
-- 3. 수동 번호 입력 받기
-   -> 수동 로또에 대한 내용은 입력받는 수를 넣어주기
-- 4. 총 갯수에서 수동과 자동갯수 안내후 모든 로또의 번호를 출력
-   -> 총 갯수에서 수동갯수 제외하고 자동에대한 내용 Random함수로 생성해보기
-- 5. 당첨 번호 출력과 보너스볼 출력
-   -> 고정값으로.
-- 6. 당첨번호와 각 로또 번호를 비교하여 당첨여부를 파악해야한다.
-    -> 3,4,5,5+보너스, 6개 다출력후 각각 몇개 당점인지 파악하는 로직 필요
-- 7. 당첨 통계를 바탕으로 마무리 작업
-   -> 3,4,5,5+보너스, 6개 다출력후 각각 몇개 당점인지 출력,
-     총수익률 계산후 출력.
+0) 로또 1매의 가격은 1000원
+  * static 상수로 선언 : static final int LOTTO_PRICE = 1000;
+
+1) 구매 금액 입력 가능
+  * 구매 금액 입력 받기
+      * input : new Scanner(System.in)
+      * output : int totalAmount
+  * 총 갯수 구하기
+      * int totalLottoCount = 구매 금액 / 1매 가격
+    
+2) 수동 매수 입력 기능
+  * 수동 매수 입력 받기
+    * input : new Scanner(System.in)
+    * output : int manualLottoCount
+    
+3) 수동 번호 입력 기능
+  * 입력받은 수동매수와 수동번호로 로또 리스트를 반환하는 기능
+  * 로또번호 문자열 리스트를 split 메서드로 파싱 및 Integer로 형변환 메서드 구현(lottoNumberPaser)
+    * input : int lottoCount, List<String> lottoInputList
+    * output : List<LottoNumber> lottoList
+    
+4) 자동으로 나머지 매수 로또를 생성하는 기능
+  * 자동매수 갯수 구하기
+    * int autoLottoCount = 총 로또 갯수(totalLottoCount) - 수동 로또 갯수(manualLottoCount)
+  * 자동매수 만큼 로또를 생성하는 메서드 구현
+    * autoNumCreate()
+      * input : int autoLottoCount
+      * output : List<LottoNumber> autoLottoList
+      * 일단은 이중포문으로 Random함수 통해 로또 생성하고 이후 Stream API활용해 리팩토링 해볼것.
+    
+5) 수동 로또목록과 자동 로또목록을 합친후 출력
+  * 수동,자동 로또목록 병합.
+    * List<LottoNumber> lottoList
+  * 로또 번호를 문자열로 출력하기 위해 LottoNumber 클래스의 toString() 메서드 구현
+  
+6) 지난주 당첨번호와 보너스 볼
+  * 지난주 당첨번호 입력받고 정수로 파싱 
+    * int winNumbers = new int[6] (lottoNumberPaser 리턴값)
+    * int bonusBall = scan.nextInt()
+    
+7) 당첨 통계 추출
+  * 당첨번호화 로또 번호들로 당첨여부 파악하는 메서드 구현. - winResult
+  * 몇등으로 몇번 당첨이 되었는지에 대한 정보와 수익률을 계산하는 클래스 구현 - LottoResult   
+    * winResult()
+      * input : int winNumbers, int bonusBall, List<LottoNumber> lottoList 
+      * output : LottoResult
+
+8) 당첨 통계와 수익률 출력 형식을 LottoResult의 toString메서드로 구현.     
+
+
+1. 동작하는 쓰레기 코드 -> 그후에 리펙토링
+스캐너 : 
+2. 기능목록 보완 
+3. 크롤링 코드 갈무리후 머지 리퀘스트
