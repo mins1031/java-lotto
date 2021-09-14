@@ -26,16 +26,13 @@ public class LottoMain {
             lottoInputList.add(scan.nextLine());
         }
 
-        List<LottoNumber> lottoList = LottoUtil.lottoNumberParser(lottoInputList);
-
         int autoLottoCount = totalLottoCount - manualLottoCount;
 
+        // add manual
+        List<LottoNumber> lottoList = LottoUtil.lottoNumberParser(lottoInputList);
 
-//        String str = "1,23,55,4,10";
-//        String[] arr = str.split(", ");
-//        List<String[]> list = new ArrayList<>();
-//
-//        list.add(arr);
+        // merge auto
+        lottoList.addAll(LottoUtil.autoNumCreate(autoLottoCount));
 
     }
 }

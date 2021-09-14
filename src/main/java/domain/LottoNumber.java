@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Arrays;
+
 public class LottoNumber {
 
     private Integer[] lottoNumbers = new Integer[6];
@@ -26,5 +28,10 @@ public class LottoNumber {
 
     public void setLottoNumber(Integer[] lottoNumber) {
         this.lottoNumbers = lottoNumber;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(lottoNumbers);
     }
 }
