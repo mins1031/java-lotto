@@ -22,15 +22,15 @@ class LottoResultTest {
     void winResultTest(){
         //Given
         List<LottoNumber> lottoList = new ArrayList<>();
-        LottoNumber lottoNumber1 = new LottoNumber();
-        LottoNumber lottoNumber2 = new LottoNumber();
+        LottoNumber firstLottoNumber = new LottoNumber();
+        LottoNumber secondLottoNumber = new LottoNumber();
 
         for (int i = 1; i< 7; i++){
-            lottoNumber1.add(i*2);
-            lottoNumber2.add(i*3);
+            firstLottoNumber.add(i*2);
+            secondLottoNumber.add(i*3);
         }
-        lottoList.add(lottoNumber1);
-        lottoList.add(lottoNumber2);
+        lottoList.add(firstLottoNumber);
+        lottoList.add(secondLottoNumber);
 
         int [] winNumbers = {2, 3, 4, 6, 8, 9};
         int bonusBall = 7;
@@ -44,19 +44,10 @@ class LottoResultTest {
 
     }
 
-    @Test
-    void checkMatchCount(){
-        //Given
-        //When
-        //Then
-    }
 
     @Test
     void calculateBenefitRate(){
         //Given
-        LottoResult testLotto = new LottoResult();
-
-        int totalAmount = 100;
         //When
         //Then
     }

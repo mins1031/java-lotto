@@ -56,7 +56,7 @@ public class LottoResult {
         }
     }
 
-    public void calculateBenefitRate (int totalAmount) {
+    public void calculateBenefitRate(int totalAmount) {
         double totalBenefit = matchThree * 5_000 +
                 matchFour * 50_000 +
                 matchFive * 1_500_000 +
