@@ -1,8 +1,10 @@
 import domain.LottoNumber;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class LottoMain {
 
@@ -22,7 +24,7 @@ public class LottoMain {
 
         System.out.println("수동으로 구매할 번호를 입력해 주세요.");
         List<String> lottoInputList = new ArrayList<>();
-        for (int i=0 ; i < manualLottoCount ; i++ ){
+        for (int i = 0; i < manualLottoCount; i++) {
             lottoInputList.add(scan.nextLine());
         }
 
@@ -33,6 +35,18 @@ public class LottoMain {
 
         // merge auto
         lottoList.addAll(LottoUtil.autoNumCreate(autoLottoCount));
+
+        //print
+        System.out.println("수동으로 " + manualLottoCount + "장, 자동으로 " + autoLottoCount + "개를 구매했습니다");
+        for (LottoNumber lottoNumber : lottoList) {
+            System.out.println(lottoNumber);
+        }
+
+        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
+        int [] winNumbers = Stream.of(scan.nextLine().split(", ")).mapToInt(Integer::parseInt).toArray();
+
+        System.out.println("보너스 볼을 입력해 주세요.");
+        int bonusBall = scan.nextInt();
 
     }
 }
