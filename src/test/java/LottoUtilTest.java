@@ -29,4 +29,18 @@ class LottoUtilTest {
         Assertions.assertThat(parseResultList.get(2).getLottoNumber()[2]).isEqualTo(5);
         Assertions.assertThat(parseResultList.get(2).getLottoNumber()[5]).isEqualTo(9);
     }
+
+    @Test
+    void lottoNumberParser() {
+    }
+
+    @Test
+    void autoNumCreate() {
+        //Given
+        int autoLottoCount = 11;
+        //When
+        List<LottoNumber> autoNumbers = LottoUtil.autoNumCreate(autoLottoCount);
+        //Then
+        Assertions.assertThat(autoNumbers.size()).isEqualTo(11);
+    }
 }

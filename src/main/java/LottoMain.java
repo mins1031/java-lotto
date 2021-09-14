@@ -28,6 +28,8 @@ public class LottoMain {
 
         List<LottoNumber> lottoList = LottoUtil.lottoNumberParser(lottoInputList);
 
+        int autoLottoCount = totalLottoCount - manualLottoCount;
+
 
 //        String str = "1,23,55,4,10";
 //        String[] arr = str.split(", ");

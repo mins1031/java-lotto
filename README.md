@@ -69,7 +69,7 @@
 3) 수동 번호 입력 기능
   * 입력받은 수동매수와 수동번호로 로또 리스트를 반환하는 기능
   * 로또번호 문자열 리스트를 split 메서드로 파싱 및 Integer로 형변환 메서드 구현(lottoNumberPaser)
-    * input : int lottoCount, List<String> lottoInputList
+    * input : List<String> lottoInputList
     * output : List<LottoNumber> lottoList
     
 4) 자동으로 나머지 매수 로또를 생성하는 기능
