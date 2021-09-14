@@ -56,22 +56,6 @@ public class LottoResult {
         }
     }
 
-    public int[] getWinNumbers() {
-        return winNumbers;
-    }
-
-    public void setWinNumbers(int[] winNumbers) {
-        this.winNumbers = winNumbers;
-    }
-
-    public int getBonusBall() {
-        return bonusBall;
-    }
-
-    public void setBonusBall(int bonusBall) {
-        this.bonusBall = bonusBall;
-    }
-
     public void calculateBenefitRate (int totalAmount) {
         double totalBenefit = matchThree * 5_000 +
                 matchFour * 50_000 +
@@ -90,5 +74,45 @@ public class LottoResult {
                 "5개 일치, 보너스 볼 일치 (30,000,000원)- " + matchBounus + "개\n" +
                 "6개 일치 (2,000,000,000원)- " + matchSix + "개\n" +
                 "총 수익률은 " + (Math.floor(benefitRate * 100) / 100.0) + "입니다.\n";
+    }
+
+    public int[] getWinNumbers() {
+        return winNumbers;
+    }
+
+    public void setWinNumbers(int[] winNumbers) {
+        this.winNumbers = winNumbers;
+    }
+
+    public int getBonusBall() {
+        return bonusBall;
+    }
+
+    public void setBonusBall(int bonusBall) {
+        this.bonusBall = bonusBall;
+    }
+
+    public int getMatchThree() {
+        return matchThree;
+    }
+
+    public int getMatchFour() {
+        return matchFour;
+    }
+
+    public int getMatchFive() {
+        return matchFive;
+    }
+
+    public int getMatchBounus() {
+        return matchBounus;
+    }
+
+    public int getMatchSix() {
+        return matchSix;
+    }
+
+    public double getBenefitRate() {
+        return benefitRate;
     }
 }

@@ -10,33 +10,23 @@ import static org.junit.jupiter.api.Assertions.*;
 class LottoUtilTest {
 
     @Test
-    void manualNumParserTest(){
+    void lottoNumberParserTest(){
         //Given
-        List<String> manualList = new ArrayList<>();
-        manualList.add("1, 2, 3, 4, 5, 6");
-        manualList.add("1, 2, 3, 4, 5, 8");
-        manualList.add("1, 4, 5, 4, 5, 9");
+        String testLotto = "1, 4, 5, 4, 5, 9";
         //When
-        //List<LottoNumber> parseResultList = LottoUtil.lottoNumberParser(manualList);
+        LottoNumber parseLottoData = LottoUtil.lottoNumberParser(testLotto);
         //Then
-        /*Assertions.assertThat(parseResultList.get(0).getLottoNumber()[0]).isEqualTo(1);
-        Assertions.assertThat(parseResultList.get(0).getLottoNumber()[1]).isEqualTo(2);
-        Assertions.assertThat(parseResultList.get(0).getLottoNumber()[2]).isEqualTo(3);
-        Assertions.assertThat(parseResultList.get(1).getLottoNumber()[3]).isEqualTo(4);
-        Assertions.assertThat(parseResultList.get(1).getLottoNumber()[4]).isEqualTo(5);
-        Assertions.assertThat(parseResultList.get(1).getLottoNumber()[5]).isEqualTo(8);
-        Assertions.assertThat(parseResultList.get(2).getLottoNumber()[1]).isEqualTo(4);
-        Assertions.assertThat(parseResultList.get(2).getLottoNumber()[2]).isEqualTo(5);
-        Assertions.assertThat(parseResultList.get(2).getLottoNumber()[5]).isEqualTo(9);
-    */
+        Assertions.assertThat(parseLottoData.getLottoNumber().get(0)).isEqualTo(1);
+        Assertions.assertThat(parseLottoData.getLottoNumber().get(1)).isEqualTo(4);
+        Assertions.assertThat(parseLottoData.getLottoNumber().get(2)).isEqualTo(5);
+        Assertions.assertThat(parseLottoData.getLottoNumber().get(3)).isEqualTo(4);
+        Assertions.assertThat(parseLottoData.getLottoNumber().get(4)).isEqualTo(5);
+        Assertions.assertThat(parseLottoData.getLottoNumber().get(5)).isEqualTo(9);
+
     }
 
     @Test
-    void lottoNumberParser() {
-    }
-
-    @Test
-    void autoNumCreate() {
+    void autoNumCreateTest() {
         //Given
         int autoLottoCount = 11;
         //When
