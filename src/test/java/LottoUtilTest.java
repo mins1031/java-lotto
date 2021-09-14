@@ -17,7 +17,7 @@ class LottoUtilTest {
         manualList.add("1, 2, 3, 4, 5, 8");
         manualList.add("1, 4, 5, 4, 5, 9");
         //When
-        List<LottoNumber> parseResultList = LottoUtil.manualNumParser(manualList);
+        List<LottoNumber> parseResultList = LottoUtil.lottoNumberParser(manualList);
         //Then
         Assertions.assertThat(parseResultList.get(0).getLottoNumber()[0]).isEqualTo(1);
         Assertions.assertThat(parseResultList.get(0).getLottoNumber()[1]).isEqualTo(2);

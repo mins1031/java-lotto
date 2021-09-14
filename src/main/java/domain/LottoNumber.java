@@ -8,18 +8,12 @@ public class LottoNumber {
     public LottoNumber() {
     }
 
-    public void addAuto(int lottoNumber){
+    public void add(int lottoNumber){
         if (inputSize > 5){
             //에러만들예정
         }
         lottoNumbers[inputSize] = lottoNumber;
         inputSize++;
-    }
-
-    public void addManual(String[] manual){
-        for(String lottoNum : manual) {
-            addAuto(Integer.parseInt(lottoNum));
-        }
     }
 
     public int size(){
