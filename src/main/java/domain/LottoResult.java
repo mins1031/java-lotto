@@ -11,7 +11,7 @@ public class LottoResult {
     private int matchThree;
     private int matchFour;
     private int matchFive;
-    private int matchBounus;
+    private int matchBonus;
     private int matchSix;
 
     private double benefitRate;
@@ -48,7 +48,7 @@ public class LottoResult {
             this.matchFour++;
         } else if (sameCount == 5){
             if (bonusCount == 1){
-                this.matchBounus++;
+                this.matchBonus++;
             } else {
                 this.matchFive++;
             }
@@ -61,7 +61,7 @@ public class LottoResult {
         double totalBenefit = matchThree * 5_000 +
                 matchFour * 50_000 +
                 matchFive * 1_500_000 +
-                matchBounus * 30_000_000 +
+                matchBonus * 30_000_000 +
                 matchSix * 2_000_000_000;
 
         this.benefitRate = totalBenefit / totalAmount;
@@ -72,7 +72,7 @@ public class LottoResult {
         return "3개 일치 (5,000원)- " + matchThree + "개\n" +
                 "4개 일치 (50,000원)- " + matchFour + "개\n" +
                 "5개 일치 (1,500,000원)- " + matchFive + "개\n" +
-                "5개 일치, 보너스 볼 일치 (30,000,000원)- " + matchBounus + "개\n" +
+                "5개 일치, 보너스 볼 일치 (30,000,000원)- " + matchBonus + "개\n" +
                 "6개 일치 (2,000,000,000원)- " + matchSix + "개\n" +
                 "총 수익률은 " + (Math.floor(benefitRate * 100) / 100.0) + "입니다.\n";
     }
@@ -105,8 +105,8 @@ public class LottoResult {
         return matchFive;
     }
 
-    public int getMatchBounus() {
-        return matchBounus;
+    public int getMatchBonus() {
+        return matchBonus;
     }
 
     public int getMatchSix() {
