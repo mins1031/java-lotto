@@ -1,5 +1,7 @@
+import domain.LottoNumber;
 import validator.InputValidator;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class InputScanner {
@@ -11,6 +13,12 @@ public class InputScanner {
         String next = scanner.next();
         InputValidator.numberInputValidate(next);
         return Integer.parseInt(next);
+    }
+
+    public static String[] userLottoInput(String message){
+        String inputNumbers = scanner.nextLine();
+
+        return inputNumbers.split("\\s*,\\s*");
     }
 
     public static int scanInteger() {

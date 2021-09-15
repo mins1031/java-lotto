@@ -18,7 +18,7 @@ public class LottoMain {
 
         ExceptionHandler.validateLottoCount(totalLottoCount, manualLottoCount);
 
-        System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+        String[] manualNumList = InputScanner.userLottoInput("수동으로 구매할 번호를 입력해 주세요.");
         List<LottoNumber> lottoList = new ArrayList<>();
         for (int i = 0; i < manualLottoCount; i++) {
             String manualNum = scan.nextLine();
