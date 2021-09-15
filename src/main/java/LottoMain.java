@@ -1,11 +1,9 @@
 import domain.LottoNumber;
 import domain.LottoResult;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class LottoMain {
 
@@ -14,12 +12,9 @@ public class LottoMain {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("구매금액을 입력해 주세요.");
-        int totalAmount = InputScanner.scanInteger();
+        int totalAmount = InputScanner.userNumberInput("구매금액을 입력해 주세요.");
         int totalLottoCount = totalAmount / LOTTO_PRICE;
-
-        System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
-        int manualLottoCount = InputScanner.scanInteger();
+        int manualLottoCount = InputScanner.userNumberInput("수동으로 구매할 로또 수를 입력해 주세요.");
 
         ExceptionHandler.validateLottoCount(totalLottoCount, manualLottoCount);
 
@@ -50,7 +45,7 @@ public class LottoMain {
         System.out.println("보너스 볼을 입력해 주세요.");
         int bonusBall = scan.nextInt();
 
-        LottoResult lottoResult = new LottoResult(winNumbers,bonusBall);
+        LottoResult lottoResult = new LottoResult(winNumbers, bonusBall);
         lottoResult.winResult(lottoList);
         lottoResult.calculateBenefitRate(totalAmount);
 
