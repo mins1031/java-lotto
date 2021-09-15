@@ -26,7 +26,9 @@ public class LottoMain {
         List<LottoNumber> lottoList = new ArrayList<>();
         for (int i = 0; i < manualLottoCount; i++) {
             String manualNum = scan.nextLine();
-            lottoList.add(LottoUtil.lottoNumberParser(manualNum));
+            LottoNumber tempLottoNumber = new LottoNumber();
+            tempLottoNumber.addAll(LottoUtil.lottoNumberParser(manualNum));
+            lottoList.add(tempLottoNumber);
         }
 
         int autoLottoCount = totalLottoCount - manualLottoCount;
@@ -41,7 +43,8 @@ public class LottoMain {
         }
 
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        int [] winNumbers = Stream.of(scan.nextLine().split(", ")).mapToInt(Integer::parseInt).toArray();
+        String inputWinNum = scan.nextLine();
+        List<Integer> winNumbers = LottoUtil.lottoNumberParser(inputWinNum);
 
         System.out.println("보너스 볼을 입력해 주세요.");
         int bonusBall = scan.nextInt();
@@ -55,6 +58,6 @@ public class LottoMain {
         System.out.println("---------");
         System.out.println(lottoResult.toString());
 
-
+        scan.close();
     }
 }

@@ -7,15 +7,15 @@ public class LottoNumber {
 
     private List<Integer> lottoNumbers = new ArrayList<>();
 
-
     public LottoNumber() {
     }
 
     public void add(int lottoNumber){
-        if (lottoNumbers.size() > 5){
-            //에러만들예정
-        }
         lottoNumbers.add(lottoNumber);
+    }
+
+    public void addAll(List<Integer> lottoNumber){
+        lottoNumbers.addAll(lottoNumber);
     }
 
     public List<Integer> getLottoNumber() {

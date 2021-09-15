@@ -105,3 +105,9 @@
 스캐너 : 
 2. 기능목록 보완 
 3. 크롤링 코드 갈무리후 머지 리퀘스트
+
+1. develop pull 받고
+2. git pull --rebase origin develop
+3. 충돌있다면 해결후 git rebase --continue
+4. git push origin 개인브랜치
+5. 이후 gitlab에서 merge Requset

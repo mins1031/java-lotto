@@ -1,15 +1,15 @@
 import domain.LottoNumber;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoUtil {
 
-    public static LottoNumber lottoNumberParser(String lottoInput){
-        LottoNumber lotto = new LottoNumber();
-
-        for (String splitNum : lottoInput.split(", ")) {
-            lotto.add(Integer.parseInt(splitNum));
-        }
+    public static List<Integer> lottoNumberParser(String lottoInput){
+        List<Integer> lotto = Stream.of(lottoInput.split("\\s*,\\s*"))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
 
         return lotto;
     }
@@ -26,6 +26,7 @@ public class LottoUtil {
             }
             autoLottoList.add(lottoNumber);
         }
+
         return autoLottoList;
     }
 
@@ -35,7 +36,6 @@ public class LottoUtil {
         while(tempSet.size() != 6) {
             tempSet.add(new Random().nextInt(45) + 1);
         }
-
         List<Integer> nonDupList = new ArrayList<>(tempSet);
 
         return nonDupList;

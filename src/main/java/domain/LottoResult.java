@@ -1,10 +1,11 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoResult {
 
-    private int [] winNumbers = new int[6];
+    private List<Integer> winNumbers = new ArrayList<>();
     private int bonusBall;
 
     private int matchThree;
@@ -18,7 +19,7 @@ public class LottoResult {
     public LottoResult() {
     }
 
-    public LottoResult(int[] winNumbers, int bonusBall) {
+    public LottoResult(List<Integer> winNumbers, int bonusBall) {
         this.winNumbers = winNumbers;
         this.bonusBall = bonusBall;
     }
@@ -76,11 +77,11 @@ public class LottoResult {
                 "총 수익률은 " + (Math.floor(benefitRate * 100) / 100.0) + "입니다.\n";
     }
 
-    public int[] getWinNumbers() {
+    public List<Integer> getWinNumbers() {
         return winNumbers;
     }
 
-    public void setWinNumbers(int[] winNumbers) {
+    public void setWinNumbers(List<Integer> winNumbers) {
         this.winNumbers = winNumbers;
     }
 

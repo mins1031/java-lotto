@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,7 +33,7 @@ class LottoResultTest {
         lottoList.add(firstLottoNumber);
         lottoList.add(secondLottoNumber);
 
-        int [] winNumbers = {2, 3, 4, 6, 8, 9};
+        List<Integer> winNumbers = Arrays.asList(2, 3, 4, 6, 8, 9);
         int bonusBall = 7;
 
         LottoResult lottoResult = new LottoResult(winNumbers,bonusBall);
