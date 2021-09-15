@@ -5,27 +5,30 @@ public class InputScanner {
 
     private static Scanner scan = new Scanner(System.in);
 
-    public static int scanInteger(){
+    public static int scanInteger() {
         int input = 0;
         try {
             input = scan.nextInt();
             if (input <= 0){
-                generateInputError();
+                ExceptionHandler.generateInputError();
             }
         } catch (RuntimeException e) {
-            generateInputError();
+            ExceptionHandler.generateInputError();
         }
         return input;
     }
 
-    public String scanString(){
-        return scan.nextLine();
+    public static String scanString() {
+        String input = scan.nextLine();
+
+        // input.length() == 0
+
+
+        // 6개 이외의 입력
+
+        return input;
     }
 
-    private static void generateInputError(){
-        System.out.println("잘못된 입력입니다. 프로그램을 다시 실행해주세요");
-        System.exit(1);
-    }
 
 
 
