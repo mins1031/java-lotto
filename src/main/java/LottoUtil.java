@@ -20,10 +20,7 @@ public class LottoUtil {
         for (int i = 0 ; i < autoLottoCount; i++){
             LottoNumber lottoNumber = new LottoNumber();
             List<Integer> autoNumbers = getRandomNumList();
-
-            for (Integer integer : autoNumbers) {
-                lottoNumber.add(integer);
-            }
+            lottoNumber.addAll(autoNumbers);
             autoLottoList.add(lottoNumber);
         }
 
