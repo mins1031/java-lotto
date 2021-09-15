@@ -14,6 +14,7 @@ public class LottoNumber {
         lottoNumbers.add(lottoNumber);
     }
 
+    // 로또번호를 문자열로 받는 파싱 메서드 재활용을 위해 addAll로 생성.
     public void addAll(List<Integer> lottoNumber){
         lottoNumbers.addAll(lottoNumber);
     }

@@ -15,7 +15,7 @@ public class LottoMain {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("구매금액을 입력해 주세요.");
-        int totalAmount = scan.nextInt();
+        int totalAmount = InputScanner.scanInteger();
         int totalLottoCount = totalAmount / LOTTO_PRICE;
 
         System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
