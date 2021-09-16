@@ -1,16 +1,12 @@
 package lotto.scanner;
 
-import lotto.domain.LottoGame;
-import lotto.domain.LottoNo;
-import lotto.domain.LottoNumbers;
-import lotto.exception.ExceptionHandler;
+import lotto.domain.lottos.LottoGame;
+import lotto.domain.lottos.LottoNo;
+import lotto.domain.lottos.LottoNumbers;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -21,6 +17,7 @@ public class InputScanner {
     public static int userNumberInput(String message) {
         System.out.println(message);
         String next = scanner.next();
+        scanner.nextLine();
         return Integer.parseInt(next);
     }
 

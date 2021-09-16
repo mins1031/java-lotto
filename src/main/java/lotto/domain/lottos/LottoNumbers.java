@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lottos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,6 @@ public class LottoNumbers {
         if (lottoNumberList.size() == 0) {
             init();
         }
-
         return lottoNumberList;
     }
 }

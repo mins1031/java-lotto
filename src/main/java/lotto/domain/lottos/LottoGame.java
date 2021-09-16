@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lottos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,4 +18,12 @@ public class LottoGame {
         numbers.add(lottoNos);
     }
 
+    @Override
+    public String toString() {
+        return "" + numbers + "";
+    }
+
+    public List<LottoNo> getNumbers() {
+        return numbers;
+    }
 }

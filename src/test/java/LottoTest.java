@@ -1,7 +1,11 @@
+import lotto.domain.lottos.Lotto;
+import lotto.domain.lottos.LottoGame;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
+import java.util.List;
 
 public class LottoTest {
 
@@ -26,6 +30,30 @@ public class LottoTest {
         // List<LottoNumber> lottoList = LottoUtil.manualNumCreate();
         //Then
         // Assertions.assertThat(lottoList.size()).isEqualTo(3);
+
+    }
+
+    @Test
+    void createAutoLottoTest() {
+        int autoLottoCount = 5;
+
+        List<LottoGame> autoLotto = Lotto.createAutoLotto(autoLottoCount);
+
+        for (LottoGame temp: autoLotto) {
+            System.out.println(temp);
+        }
+
+        Assertions.assertThat(autoLotto.size()).isEqualTo(5);
+    }
+
+    @Test
+    void printTest() {
+        Lotto lotto = new Lotto();
+        Lotto.createAutoLotto(7);
+
+        lotto.print();
+
+
 
     }
 

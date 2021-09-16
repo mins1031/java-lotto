@@ -1,15 +1,14 @@
 import lotto.domain.BuyMoney;
+import lotto.domain.lottos.Lotto;
+import lotto.domain.WinResult;
 import lotto.exception.ExceptionHandler;
 import lotto.scanner.InputScanner;
-
-import java.util.Scanner;
 
 public class LottoMain {
 
     private static final int LOTTO_PRICE = 1000;
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
 
         BuyMoney totalAmount = BuyMoney.configPurchaseAmount("구매금액을 입력해 주세요.");
         int totalLottoCount = totalAmount.getPurchaseAmount() / LOTTO_PRICE;
@@ -17,14 +16,17 @@ public class LottoMain {
         int manualLottoCount = InputScanner.userNumberInput("수동으로 구매할 로또 수를 입력해 주세요.");
         ExceptionHandler.validateLottoCount(totalLottoCount, manualLottoCount);
 
-        /*String[] manualNumList = InputScanner.userLottoInput("수동으로 구매할 번호를 입력해 주세요.");
-        List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < manualLottoCount; i++) {
-            String manualNum = scan.nextLine();
-            Lotto tempLottoNumber = new Lotto();
-            tempLottoNumber.addAll(LottoUtil.lottoNumberParser(manualNum));
-            lottoList.add(tempLottoNumber);
-        }*/
+        int autoLottoCount = totalLottoCount - manualLottoCount;
+
+        Lotto lotto = Lotto.createManualLotto("수동으로 구매할 번호를 입력해 주세요.",manualLottoCount);
+
+        Lotto.createAutoLotto(autoLottoCount);
+
+        lotto.print();
+
+        WinResult.inputWinNumbers("지난 주 당첨 번호를 입력해 주세요.");
+        WinResult.inputBonusBall("보너스 볼을 입력해 주세요.");
+
 //
 //        int autoLottoCount = totalLottoCount - manualLottoCount;
 //
@@ -53,6 +55,5 @@ public class LottoMain {
 //        System.out.println("---------");
 //        System.out.println(lottoResult.toString());
 
-        scan.close();
     }
 }

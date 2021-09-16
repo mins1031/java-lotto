@@ -1,12 +1,5 @@
 # java-lotto
 
-1. 문자열로 받고
-2. int[]로 변환해요
-3. int[0~5]의 값 -1을 LottoMumbers.get(값 -1)로 하면 LottoNo의 인스턴스가 get
-4. 이걸 이중포문으로 반복해야 할것 같은데 스트림으로 줄이고
-5. 3의 LottoNo을 1) List에 하나하나 add할지, 2) 따로 List담아서 addAll할지
-6. 담은 List를 Lotto의 lottoGames에 담아줘야 한다. 
-
 ```
 실행 결과
 구입금액을 입력해 주세요.
