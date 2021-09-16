@@ -24,9 +24,9 @@ public class LottoResult {
         this.bonusBall = bonusBall;
     }
 
-    public void winResult(List<LottoNumber> lottoList){
+    public void winResult(List<Lotto> lottoList){
 
-        for (LottoNumber list: lottoList) {
+        for (Lotto list: lottoList) {
             int sameCount = 0;
             int bonusCount = 0;
             for (int winNum: winNumbers) {

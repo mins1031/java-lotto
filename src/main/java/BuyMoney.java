@@ -10,7 +10,7 @@ public class BuyMoney {
         return purchaseAmount;
     }
 
-    public static BuyMoney configPurchaseAmount(String message){
+    public static BuyMoney configPurchaseAmount(String message) {
 
         int convertPurchaseAmount = InputScanner.userNumberInput(message);
 

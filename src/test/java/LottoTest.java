@@ -1,10 +1,7 @@
-import domain.LottoNumber;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.util.List;
 
 public class LottoTest {
 

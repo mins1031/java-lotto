@@ -1,4 +1,4 @@
-import domain.LottoNumber;
+import domain.Lotto;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,28 +14,28 @@ public class LottoUtil {
         return lotto;
     }
 
-    public static List<LottoNumber> autoNumCreate(int autoLottoCount) {
-        List<LottoNumber> autoLottoList = new ArrayList<>();
-
-        for (int i = 0 ; i < autoLottoCount; i++){
-            LottoNumber lottoNumber = new LottoNumber();
-            List<Integer> autoNumbers = getRandomNumList();
-            lottoNumber.addAll(autoNumbers);
-            autoLottoList.add(lottoNumber);
-        }
-
-        return autoLottoList;
-    }
-
-    public static List<Integer> getRandomNumList() {
-        Set<Integer> tempSet = new TreeSet<>();
-
-        while(tempSet.size() != 6) {
-            tempSet.add(new Random().nextInt(45) + 1);
-        }
-        List<Integer> nonDupList = new ArrayList<>(tempSet);
-
-        return nonDupList;
-    }
+//    public static List<Lotto> autoNumCreate(int autoLottoCount) {
+//        List<Lotto> autoLottoList = new ArrayList<>();
+//
+//        for (int i = 0 ; i < autoLottoCount; i++){
+//            Lotto lottoNumber = new Lotto();
+//            List<Integer> autoNumbers = getRandomNumList();
+//            lottoNumber.addAll(autoNumbers);
+//            autoLottoList.add(lottoNumber);
+//        }
+//
+//        return autoLottoList;
+//    }
+//
+//    public static List<Integer> getRandomNumList() {
+//        Set<Integer> tempSet = new TreeSet<>();
+//
+//        while(tempSet.size() != 6) {
+//            tempSet.add(new Random().nextInt(45) + 1);
+//        }
+//        List<Integer> nonDupList = new ArrayList<>(tempSet);
+//
+//        return nonDupList;
+//    }
 
 }

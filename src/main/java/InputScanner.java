@@ -1,6 +1,3 @@
-import domain.LottoNumber;
-import validator.InputValidator;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,13 +8,20 @@ public class InputScanner {
     public static int userNumberInput(String message) {
         System.out.println(message);
         String next = scanner.next();
-        InputValidator.numberInputValidate(next);
         return Integer.parseInt(next);
     }
 
-    public static String[] userLottoInput(String message){
-        String inputNumbers = scanner.nextLine();
+    public static List<String[]> userLottoInput(String message, int iter) {
+        System.out.println(message);
 
+        for(int i = 0; i < iter; ++i) {
+            userLottoInput();
+        }
+
+    }
+
+    public static String[] userLottoInput(){
+        String inputNumbers = scanner.nextLine();
         return inputNumbers.split("\\s*,\\s*");
     }
 

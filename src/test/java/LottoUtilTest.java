@@ -1,11 +1,8 @@
-import domain.LottoNumber;
+import domain.Lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoUtilTest {
 
@@ -29,7 +26,7 @@ class LottoUtilTest {
         //Given
         int autoLottoCount = 11;
         //When
-        List<LottoNumber> autoNumbers = LottoUtil.autoNumCreate(autoLottoCount);
+        List<Lotto> autoNumbers = LottoUtil.autoNumCreate(autoLottoCount);
         //Then
         Assertions.assertThat(autoNumbers.size()).isEqualTo(11);
     }
