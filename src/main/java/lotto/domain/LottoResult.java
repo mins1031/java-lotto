@@ -24,21 +24,21 @@ public class LottoResult {
         this.bonusBall = bonusBall;
     }
 
-    public void winResult(List<Lotto> lottoList){
-
-        for (Lotto list: lottoList) {
-            int sameCount = 0;
-            int bonusCount = 0;
-            for (int winNum: winNumbers) {
-                if (list.getLottoNumber().contains(winNum)) {
-                    sameCount++;
-                } else if (list.getLottoNumber().contains(bonusBall)){
-                    bonusCount++;
-                }
-            }
-            checkMatchCount(sameCount,bonusCount);
-        }
-    }
+//    public void winResult(List<Lotto> lottoList){
+//
+//        for (Lotto list: lottoList) {
+//            int sameCount = 0;
+//            int bonusCount = 0;
+//            for (int winNum: winNumbers) {
+//                if (list.getLottoNumber().contains(winNum)) {
+//                    sameCount++;
+//                } else if (list.getLottoNumber().contains(bonusBall)){
+//                    bonusCount++;
+//                }
+//            }
+//            checkMatchCount(sameCount,bonusCount);
+//        }
+//    }
 
     public void checkMatchCount(int sameCount, int bonusCount){
         //switch문 사용에 대해 여줘볼것.

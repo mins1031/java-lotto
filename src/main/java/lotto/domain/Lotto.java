@@ -11,7 +11,7 @@ public class Lotto {
 
     private static List<LottoNo> lottoNumberList = LottoNumbers.getInstance();
 
-    private static List<int[]> lottoGames = new ArrayList<>();
+    private static List<LottoGame> lottoGames = new ArrayList<>();
 
     public Lotto() {
     }
@@ -20,22 +20,11 @@ public class Lotto {
 
         System.out.println("input message: " + message);
 
-        List<int[]> inputLottoNumbers = InputScanner.userLottoInput(manualCount);
+        List<LottoGame> inputLottoNumbers = InputScanner.userLottoInput(manualCount);
 
         lottoGames.addAll(inputLottoNumbers);
 
-        lottoValidate(numbers);
-
-        return new Lotto(numbers);
-    }
-
-    private static void lottoValidate(List<int[]> inputLottoNumbers) {
-        for (int[] lottoArr :inputLottoNumbers) {
-            Stream.of(lottoArr).filter(x -> )
-        }
-        if (lottoNo < 1 || lottoNo > 45) {
-            throw new IllegalArgumentException("1 ~ 45 이내의 숫자를 입력해야 합니다.");
-        }
+        return new Lotto();
     }
 
 //    public void add(int lottoNumber){

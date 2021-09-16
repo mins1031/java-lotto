@@ -21,13 +21,13 @@ class LottoUtilTest {
         Assertions.assertThat(parseLottoData.get(5)).isEqualTo(9);
     }
 
-    @Test
-    void autoNumCreateTest() {
-        //Given
-        int autoLottoCount = 11;
-        //When
-        List<Lotto> autoNumbers = LottoUtil.autoNumCreate(autoLottoCount);
-        //Then
-        Assertions.assertThat(autoNumbers.size()).isEqualTo(11);
-    }
+//    @Test
+//    void autoNumCreateTest() {
+//        //Given
+//        int autoLottoCount = 11;
+//        //When
+//        List<Lotto> autoNumbers = LottoUtil.autoNumCreate(autoLottoCount);
+//        //Then
+//        Assertions.assertThat(autoNumbers.size()).isEqualTo(11);
+//    }
 }
