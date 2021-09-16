@@ -1,3 +1,7 @@
+package lotto.scanner;
+
+import lotto.exception.ExceptionHandler;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,10 +15,9 @@ public class InputScanner {
         return Integer.parseInt(next);
     }
 
-    public static List<String[]> userLottoInput(String message, int iter) {
-        System.out.println(message);
+    public static List<String[]> userLottoInput(int manualCount) {
 
-        for(int i = 0; i < iter; ++i) {
+        for(int i = 0; i < manualCount; ++i) {
             userLottoInput();
         }
 

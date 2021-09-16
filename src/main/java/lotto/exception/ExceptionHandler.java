@@ -1,3 +1,5 @@
+package lotto.exception;
+
 public class ExceptionHandler {
     public static void validateLottoCount (int totalLottoCount, int manualLottoCount) {
         if (totalLottoCount < manualLottoCount) {

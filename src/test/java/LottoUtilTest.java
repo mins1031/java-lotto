@@ -1,4 +1,4 @@
-import domain.Lotto;
+import lotto.domain.Lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

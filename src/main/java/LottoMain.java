@@ -1,8 +1,7 @@
-import domain.Lotto;
-import domain.LottoResult;
+import lotto.domain.BuyMoney;
+import lotto.exception.ExceptionHandler;
+import lotto.scanner.InputScanner;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class LottoMain {
@@ -18,14 +17,14 @@ public class LottoMain {
         int manualLottoCount = InputScanner.userNumberInput("수동으로 구매할 로또 수를 입력해 주세요.");
         ExceptionHandler.validateLottoCount(totalLottoCount, manualLottoCount);
 
-//        String[] manualNumList = InputScanner.userLottoInput("수동으로 구매할 번호를 입력해 주세요.");
-//        List<Lotto> lottoList = new ArrayList<>();
-//        for (int i = 0; i < manualLottoCount; i++) {
-//            String manualNum = scan.nextLine();
-//            Lotto tempLottoNumber = new Lotto();
-//            tempLottoNumber.addAll(LottoUtil.lottoNumberParser(manualNum));
-//            lottoList.add(tempLottoNumber);
-//        }
+        /*String[] manualNumList = InputScanner.userLottoInput("수동으로 구매할 번호를 입력해 주세요.");
+        List<Lotto> lottoList = new ArrayList<>();
+        for (int i = 0; i < manualLottoCount; i++) {
+            String manualNum = scan.nextLine();
+            Lotto tempLottoNumber = new Lotto();
+            tempLottoNumber.addAll(LottoUtil.lottoNumberParser(manualNum));
+            lottoList.add(tempLottoNumber);
+        }*/
 //
 //        int autoLottoCount = totalLottoCount - manualLottoCount;
 //

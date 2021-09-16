@@ -1,4 +1,6 @@
-package domain;
+package lotto.domain;
+
+import lotto.scanner.InputScanner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,11 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto createLotto (List<String> numbers) {
+    public static Lotto createLotto (String message, int manualCount) {
+
+        System.out.println("input message: " + message);
+
+        InputScanner.userLottoInput(manualCount);
 
         lottoValidate(numbers);
 
