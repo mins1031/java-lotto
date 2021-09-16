@@ -12,8 +12,9 @@ public class LottoMain {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        int totalAmount = InputScanner.userNumberInput("구매금액을 입력해 주세요.");
-        int totalLottoCount = totalAmount / LOTTO_PRICE;
+        BuyMoney totalAmount = BuyMoney.configPurchaseAmount("구매금액을 입력해 주세요.");
+        int totalLottoCount = totalAmount.getPurchaseAmount() / LOTTO_PRICE;
+
         int manualLottoCount = InputScanner.userNumberInput("수동으로 구매할 로또 수를 입력해 주세요.");
 
         ExceptionHandler.validateLottoCount(totalLottoCount, manualLottoCount);
