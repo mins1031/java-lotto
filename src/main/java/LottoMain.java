@@ -1,6 +1,7 @@
 import lotto.domain.BuyMoney;
+import lotto.domain.LottoCalcurator;
+import lotto.domain.WinInfo;
 import lotto.domain.lottos.Lotto;
-import lotto.domain.WinResult;
 import lotto.exception.ExceptionHandler;
 import lotto.scanner.InputScanner;
 
@@ -23,9 +24,14 @@ public class LottoMain {
         Lotto.createAutoLotto(autoLottoCount);
 
         lotto.print();
+        WinInfo winInfo = new WinInfo();
+        winInfo.inputWinNumbers("지난 주 당첨 번호를 입력해 주세요.");
+        winInfo.inputBonusBall("보너스 볼을 입력해 주세요.");
 
-        WinResult.inputWinNumbers("지난 주 당첨 번호를 입력해 주세요.");
-        WinResult.inputBonusBall("보너스 볼을 입력해 주세요.");
+        LottoCalcurator lottoCalcurator = new LottoCalcurator();
+
+
+
 
 //
 //        int autoLottoCount = totalLottoCount - manualLottoCount;

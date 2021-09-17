@@ -17,6 +17,7 @@ public class LottoNumbers {
         if (lottoNumberList.size() == 0) {
             init();
         }
+
         return lottoNumberList;
     }
 }

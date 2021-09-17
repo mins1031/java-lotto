@@ -1,34 +1,47 @@
 package lotto.domain;
 
-import lotto.domain.lottos.LottoGame;
-import lotto.domain.lottos.LottoNo;
-import lotto.domain.lottos.LottoNumbers;
-import lotto.scanner.InputScanner;
-
-import java.util.List;
-
 public class WinResult {
 
-    private static LottoGame winNumbers = new LottoGame();
-    private static LottoNo bonusBall;
+    private int threeMatchCount = 0;
+    private int fourMatchCount = 0;
+    private int fiveMatchCount = 0;
+    private int fiveAndBonusMatchCount = 0;
+    private int sixMatchCount = 0;
 
-    public static void inputWinNumbers(String message) {
-        System.out.println(message);
-        int winNumCount = 1;
-        List<LottoGame> lottoGames = InputScanner.userLottoInput(winNumCount);
-        winNumbers.addAll(lottoGames.get(0).getNumbers());
+    public void distributeMatchCnt(int matchCnt, int bonusCnt){
+        if (matchCnt == 3){
+            this.threeMatchCount++;
+        } else if (matchCnt == 4){
+            this.fourMatchCount++;
+        } else if (matchCnt == 5){
+            if (bonusCnt == 1){
+                this.fiveAndBonusMatchCount++;
+            } else {
+                this.fiveMatchCount++;
+            }
+        } else if (matchCnt == 6){
+            this.sixMatchCount++;
+        }
     }
 
-    public static void inputBonusBall(String message) {
-        int tempBonusBall = InputScanner.userNumberInput(message);
-        if (winNumbers.getNumbers().contains(tempBonusBall)){
-            throw new IllegalArgumentException("보너스 볼이 당첨번호와 중복됩니다.");
-        }
-        if (tempBonusBall < 1 || tempBonusBall > 45){
-            throw new IllegalArgumentException("보너스 볼은 1~45 사이의 수여야 합니다.");
-        }
+    public int getThreeMatchCount() {
+        return threeMatchCount;
+    }
 
-        bonusBall = LottoNumbers.getInstance().get(tempBonusBall - 1);
+    public int getFourMatchCount() {
+        return fourMatchCount;
+    }
+
+    public int getFiveMatchCount() {
+        return fiveMatchCount;
+    }
+
+    public int getFiveAndBonusMatchCount() {
+        return fiveAndBonusMatchCount;
+    }
+
+    public int getSixMatchCount() {
+        return sixMatchCount;
     }
 
 }
