@@ -1,10 +1,10 @@
 package lotto.domain.lottogenerator;
 
-import lotto.domain.Customer;
-import lotto.domain.Lotto;
+import lotto.domain.gambler.Gambler;
+import lotto.domain.lotto.Lotto;
 
 import java.util.List;
 
 public interface LottoGenerator {
-    List<Lotto> generator(Customer customer);
+    List<Lotto> generate(Gambler gambler);
 }

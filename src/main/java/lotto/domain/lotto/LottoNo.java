@@ -1,13 +1,15 @@
-package lotto.domain.lottogenerator;
+package lotto.domain.lotto;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class LottoNo implements Comparable<LottoNo> {
     private static final int MIN_LOTTO_NO = 1;
     private static final int MAX_LOTTO_NO = 45;
     private static final String ERROR_MESSAGE_LOTTO_RANGE = "1이상 45이하의 숫자를 입력하세요.";
+
     private final int number;
 
     public static Map<Integer, LottoNo> lottoNoBox = new HashMap<>();
@@ -17,9 +19,8 @@ public class LottoNo implements Comparable<LottoNo> {
     }
 
     static {
-        for (int number = LottoNo.MIN_LOTTO_NO; number <= LottoNo.MAX_LOTTO_NO; number++) {
-            lottoNoBox.put(number, valueOf(number));
-        }
+        IntStream.rangeClosed(1, 45)
+                .forEach(number -> lottoNoBox.put(number, valueOf(number)));
     }
 
     private static LottoNo valueOf(int number) {

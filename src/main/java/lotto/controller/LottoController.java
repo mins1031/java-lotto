@@ -1,40 +1,56 @@
 package lotto.controller;
 
-import lotto.domain.Customer;
-import lotto.domain.LottoManager;
-import lotto.domain.Lottos;
-import lotto.domain.WinLotto;
-import lotto.service.LottoService;
+import lotto.domain.gambler.BettingMoney;
+import lotto.domain.gambler.Gambler;
+import lotto.domain.lotto.Lottos;
+import lotto.domain.result.LottoResult;
+import lotto.domain.winlotto.WinLotto;
+import lotto.service.LottoFactoryService;
+import lotto.util.StringUtils;
+import lotto.validator.ManualLottoCountValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoController {
-    private final LottoService lottoService;
+import java.util.Arrays;
+import java.util.List;
 
-    public LottoController(LottoService lottoService) {
-        this.lottoService = lottoService;
+public class LottoController {
+    private final LottoFactoryService lottoFactoryService;
+
+    public LottoController(LottoFactoryService lottoFactoryService) {
+        this.lottoFactoryService = lottoFactoryService;
     }
 
     public void run() {
-        int money = InputView.inputMoney();
-        int manualLottoCount = InputView.inputManualLottoCount();
-        Customer customer = new Customer(money, manualLottoCount);
+        Gambler gambler = makeGambler();
+        Lottos lottos = lottoFactoryService.createLottos(gambler);
 
-        String manualLottoNumbers = InputView.inputManualLottoNumbers(customer);
-        customer.setManualLottoNumbers(manualLottoNumbers);
+        OutputView.printLottoAmounts(gambler);
+        OutputView.printLottos(lottos);
 
-        Lottos lottos = new Lottos(lottoService.createUserLottos(customer));
+        WinLotto winLotto = makeWinLotto();
 
-        printLottos(customer, lottos);
+        LottoResult lottoResult = lottos.checkResult(winLotto);
 
-        WinLotto winLotto = lottoService.createWinLotto();
-        LottoManager lottoManager = new LottoManager(lottos, winLotto);
-        lottoManager.checkLotto();
-        OutputView.printResult(customer, lottoManager);
+        OutputView.printResult(gambler.getBettingMoney(), lottoResult);
     }
 
-    private void printLottos(Customer customer, Lottos lottos) {
-        OutputView.printLottoAmounts(customer);
-        OutputView.printLottos(lottos);
+    private Gambler makeGambler() {
+        int money = InputView.inputMoney();
+        BettingMoney bettingMoney = BettingMoney.of(money);
+
+        int manualLottoCount = InputView.inputManualLottoCount();
+        ManualLottoCountValidator.validate(bettingMoney.getBettingMoney(), manualLottoCount);
+
+        List<String> manualLottoNumberBundles = InputView.inputManualLottoNumbers(manualLottoCount);
+
+        return new Gambler(bettingMoney, manualLottoNumberBundles);
+    }
+
+    private WinLotto makeWinLotto() {
+        String inputWinNumber = InputView.inputWinNumber();
+        String bonusBall = InputView.inputBonusBall();
+        List<String> inputWinNumbers = Arrays.asList(StringUtils.splitByComma(inputWinNumber));
+        return WinLotto.of(inputWinNumbers, bonusBall);
     }
 }

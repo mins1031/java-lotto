@@ -1,10 +1,10 @@
 package lotto.domain.lottogenerator;
 
-import lotto.domain.Customer;
-import lotto.domain.Lotto;
+import lotto.domain.gambler.Gambler;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNo;
 import lotto.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,17 +12,17 @@ import java.util.stream.Collectors;
 public class LottoGeneratorManual implements LottoGenerator {
     private static final String ERROR_MESSAGE_NOT_INTEGER = "숫자가 아닌 문자를 입력하였습니다.";
 
-    private static List<Lotto> createManualLotto(String[] manualLottoNumbers) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (String numbers : manualLottoNumbers) {
-            String[] winLottoNumbers = StringUtils.splitByComma(numbers);
-            List<LottoNo> lotto = toLottoNos(winLottoNumbers);
-            lottos.add(new Lotto(lotto));
-        }
-        return lottos;
+    @Override
+    public List<Lotto> generate(Gambler gambler) {
+        List<String> manualLottosNumber = gambler.getManualLottosNumber();
+        return manualLottosNumber.stream()
+                .map(StringUtils::splitByComma)
+                .map(LottoGeneratorManual::toLottoNos)
+                .map(Lotto::of)
+                .collect(Collectors.toList());
     }
 
-    public static List<LottoNo> toLottoNos(String[] winLotto) {
+    private static List<LottoNo> toLottoNos(String[] winLotto) {
         try {
             return Arrays.stream(winLotto)
                     .map(Integer::parseInt)
@@ -31,13 +31,5 @@ public class LottoGeneratorManual implements LottoGenerator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NOT_INTEGER);
         }
-    }
-
-    @Override
-    public List<Lotto> generator(Customer customer) {
-        if (!customer.isUserLottoCountOverZero()) {
-            return new ArrayList<>();
-        }
-        return createManualLotto(customer.getManualLottoNumbers());
     }
 }
