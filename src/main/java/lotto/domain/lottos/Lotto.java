@@ -6,38 +6,35 @@ import java.util.*;
 
 public class Lotto {
 
-    private static List<LottoNo> lottoNumberList = LottoNumbers.getInstance();
-    private static List<LottoGame> lottoGames = new ArrayList<>();
+    //싱글톤화한 LottoNo들의 집합인 LotoNumers의 List
+    private List<LottoNo> lottoNumberList = LottoNumbers.getInstance();
+    //사용자의 로또 결과 리스트
+    private List<LottoGame> lottoGames = new ArrayList<>();
 
     public Lotto() {
     }
 
-    public static Lotto createManualLotto(String message, int manualCount) {
-
-        System.out.println(message);
+    public void createManualLotto(String message, int manualCount) {
 
         List<LottoGame> inputLottoNumbers = InputScanner.userLottoInput(manualCount);
 
         lottoGames.addAll(inputLottoNumbers);
-
-        return new Lotto();
     }
 
-    public static List<LottoGame> createAutoLotto(int autoLottoCount) {
+    public void createAutoLotto(int autoLottoCount) {
         for (int i = 0; i<autoLottoCount; i++) {
             lottoGames.add(getRandomNumList());
         }
-
-        return lottoGames;
     }
 
-    public static LottoGame getRandomNumList() {
+    public LottoGame getRandomNumList() {
         Set<LottoNo> tempSet = new TreeSet<>();
 
         while(tempSet.size() != 6) {
             int randomValue = new Random().nextInt(45);
             tempSet.add(lottoNumberList.get(randomValue));
         }
+
         List<LottoNo> nonDupList = new ArrayList<>(tempSet);
         LottoGame lottoGame = new LottoGame();
         lottoGame.addAll(nonDupList);

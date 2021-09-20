@@ -37,7 +37,9 @@ public class LottoTest {
     void createAutoLottoTest() {
         int autoLottoCount = 5;
 
-        List<LottoGame> autoLotto = Lotto.createAutoLotto(autoLottoCount);
+        Lotto lotto = new Lotto();
+        lotto.createAutoLotto(autoLottoCount);
+        List<LottoGame> autoLotto = lotto.getLottoGames();
 
         for (LottoGame temp: autoLotto) {
             System.out.println(temp);
@@ -49,7 +51,7 @@ public class LottoTest {
     @Test
     void printTest() {
         Lotto lotto = new Lotto();
-        Lotto.createAutoLotto(7);
+        lotto.createAutoLotto(7);
 
         lotto.print();
 
