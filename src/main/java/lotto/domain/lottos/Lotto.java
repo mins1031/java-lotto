@@ -15,7 +15,7 @@ public class Lotto {
     }
 
     public void createManualLotto(String message, int manualCount) {
-
+        System.out.println(message);
         List<LottoGame> inputLottoNumbers = InputScanner.userLottoInput(manualCount);
 
         lottoGames.addAll(inputLottoNumbers);
@@ -50,6 +50,10 @@ public class Lotto {
 
     public List<LottoGame> getLottoGames() {
         return lottoGames;
+    }
+
+    public void setLottoGames(List<LottoGame> lottoGames) {
+        this.lottoGames = lottoGames;
     }
 }
 

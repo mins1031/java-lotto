@@ -31,7 +31,8 @@ public class WinInfo {
             throw new IllegalArgumentException("보너스 볼은 1~45 사이의 수여야 합니다.");
         }
 
-        bonusBall = LottoNumbers.getInstance().get(tempBonusBall - 1);
+        int realBonusBall = LottoNumbers.getInstance().get(tempBonusBall - 1).getNumber();
+        bonusBall = new LottoNo(realBonusBall);
     }
 
     public LottoGame getWinNumbers() {
@@ -40,5 +41,13 @@ public class WinInfo {
 
     public LottoNo getBonusBall() {
         return bonusBall;
+    }
+
+    public void setWinNumbers(LottoGame winNumbers) {
+        this.winNumbers = winNumbers;
+    }
+
+    public void setBonusBall(LottoNo bonusBall) {
+        this.bonusBall = bonusBall;
     }
 }

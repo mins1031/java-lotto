@@ -26,10 +26,9 @@ public class LottoInfo {
         this.manualLottoCount = parseManualCount;
         validateLottoCount(this.totalLottoCount,this.manualLottoCount);
         this.autoLottoCount = this.totalLottoCount - this.manualLottoCount;
-        //여기까지 진행 09.20
     }
 
-    public void validateLottoCount (int totalLottoCount, int manualLottoCount) {
+    public void validateLottoCount(int totalLottoCount, int manualLottoCount) {
         if (totalLottoCount < manualLottoCount) {
             throw new IllegalArgumentException("최대 구매 갯수를 초과하여 입력하였습니다.");
         }
