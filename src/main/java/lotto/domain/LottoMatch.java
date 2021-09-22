@@ -9,4 +9,8 @@ public class LottoMatch {
     public static final int FIVE = 5;
     public static final int SIX = 6;
     public static final int BONUS = 7;
+
+    public static int size() {
+        return 8;
+    }
 }

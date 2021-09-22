@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class LottoResult {
 
     private final double benefitRate;
@@ -17,9 +19,21 @@ public class LottoResult {
     }
 
     private int [] calculateMatch() {
-        int [] matchArray = new int[8];
+        int [] matchArray = new int[LottoMatch.size()];
+        int [] manualMatch = calculateMatch(lotto.getManualLottoGames());
+        int [] autoMatch = calculateMatch(lotto.getAutoLottoGames());
 
-        for (LottoGame lottoGame : lotto.getManualLottoGames()) {
+        for (int i = 0; i < LottoMatch.size(); ++i) {
+            matchArray[i] = manualMatch[i] + autoMatch[i];
+        }
+
+        return matchArray;
+    }
+
+    private int [] calculateMatch(List<LottoGame> lottoGameList) {
+        int [] matchArray = new int[LottoMatch.size()];
+
+        for (LottoGame lottoGame : lottoGameList) {
             int match = lottoGame.countMatch(winningLotto);
 
             if (match == LottoMatch.FIVE && lottoGame.getNumbers().contains(bonusBall)) {
