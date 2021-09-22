@@ -1,4 +1,4 @@
-package lotto.domain.lottos;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,7 +11,7 @@ public class LottoNumbers {
     private static List<LottoNumber> initLottoNumbers() {
         List<LottoNumber> initList = new ArrayList<>();
 
-        for (int i = 1; i< 46; i++){
+        for (int i = 1; i< 46; ++i) {
             initList.add(LottoNumber.from(i));
         }
 

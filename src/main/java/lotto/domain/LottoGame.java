@@ -1,7 +1,8 @@
-package lotto.domain.lottos;
+package lotto.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoGame {
     private final List<LottoNumber> numbers;
@@ -35,9 +36,33 @@ public class LottoGame {
         return new LottoGame(distinctList);
     }
 
+    public static LottoGame parseLottoNumber (String stringInput) {
+        List<LottoNumber> numbers = Stream.of(stringInput.split("\\s*,\\s*"))
+                .map(Integer::parseInt)
+                .distinct()
+                .sorted()
+                .filter(x -> (x > 0 && x < 46))
+                .map(x -> LottoNumbers.getLottoNumbers().get(x - 1))
+                .collect(Collectors.toList());
+
+        return LottoGame.from(numbers);
+    }
+
+    public int countMatch (LottoGame lottoGame) {
+        int count = 0;
+
+        for (LottoNumber number : lottoGame.getNumbers()) {
+            if (this.numbers.contains(number)) {
+                ++count;
+            }
+        }
+
+        return count;
+    }
+
     @Override
     public String toString() {
-        return numbers.stream().map(Objects::toString).collect(Collectors.joining(", "));
+        return numbers.stream().map(Objects::toString).collect(Collectors.joining(", ", "[", "]\n"));
     }
 
     public List<LottoNumber> getNumbers() {
