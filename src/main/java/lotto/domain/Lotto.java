@@ -30,7 +30,7 @@ public class Lotto {
         }
     }
 
-    public static Lotto of (Money money, int manualLotto) {
+    public static Lotto of(Money money, int manualLotto) {
         return new Lotto(money, manualLotto);
     }
 
@@ -46,7 +46,7 @@ public class Lotto {
         }
     }
 
-    public void buyLottoAutomatic () {
+    public void buyLottoAutomatic() {
         if (autoLottoGames.size() == autoLotto) {
             System.out.println("자동 구매 가능 매수를 초과했습니다.");
             return;
@@ -57,7 +57,7 @@ public class Lotto {
         }
     }
 
-    public void print () {
+    public void print() {
         StringBuilder sb = new StringBuilder("수동으로 " + manualLotto + "장, 자동으로 " + autoLotto + "장을 구매했습니다.\n");
 
         for (LottoGame lottoGame : manualLottoGames) {

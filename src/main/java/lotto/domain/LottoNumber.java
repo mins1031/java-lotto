@@ -9,7 +9,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
     }
 
     private void validateNumber(int number) {
-        if (number < 0 || number > 45) {
+        if (number < 1 || number > 45) {
             throw new IllegalArgumentException("LottoNumber must be 1 to 45");
         }
     }

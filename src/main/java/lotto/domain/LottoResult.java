@@ -8,7 +8,7 @@ public class LottoResult {
     private final LottoGame winningLotto;
     private final LottoNumber bonusBall;
 
-    private LottoResult (Lotto lotto, String winningLotto, int bonusBall) {
+    private LottoResult(Lotto lotto, String winningLotto, int bonusBall) {
         this.lotto = lotto;
         this.winningLotto = LottoGame.parseLottoNumber(winningLotto);
         this.bonusBall = LottoNumbers.getLottoNumbers().get(bonusBall - 1);
@@ -16,7 +16,7 @@ public class LottoResult {
         this.benefitRate = calculateBenefitRate();
     }
 
-    private int [] calculateMatch () {
+    private int [] calculateMatch() {
         int [] matchArray = new int[8];
 
         for (LottoGame lottoGame : lotto.getManualLottoGames()) {
@@ -32,7 +32,7 @@ public class LottoResult {
         return matchArray;
     }
 
-    private double calculateBenefitRate () {
+    private double calculateBenefitRate() {
         double benefit = matchArray[LottoMatch.THREE] * 5_000 +
                 matchArray[LottoMatch.FOUR] * 50_000 +
                 matchArray[LottoMatch.FIVE] * 1_500_000 +
@@ -42,7 +42,7 @@ public class LottoResult {
         return benefit / lotto.getMoney().getMoney();
     }
 
-    public static LottoResult of (Lotto lotto, String winningLotto, int bonusBall) {
+    public static LottoResult of(Lotto lotto, String winningLotto, int bonusBall) {
         return new LottoResult(lotto, winningLotto, bonusBall);
     }
 
@@ -56,5 +56,13 @@ public class LottoResult {
                     "총 수익률은 " + (Math.floor(benefitRate * 100) / 100.0) + "입니다.\n";
 
         System.out.println(result);
+    }
+
+    public int[] getMatchArray() {
+        return matchArray;
+    }
+
+    public double getBenefitRate() {
+        return this.benefitRate;
     }
 }

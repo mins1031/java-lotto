@@ -36,7 +36,7 @@ public class LottoGame {
         return new LottoGame(distinctList);
     }
 
-    public static LottoGame parseLottoNumber (String stringInput) {
+    public static LottoGame parseLottoNumber(String stringInput) {
         List<LottoNumber> numbers = Stream.of(stringInput.split("\\s*,\\s*"))
                 .map(Integer::parseInt)
                 .distinct()
@@ -48,7 +48,7 @@ public class LottoGame {
         return LottoGame.from(numbers);
     }
 
-    public int countMatch (LottoGame lottoGame) {
+    public int countMatch(LottoGame lottoGame) {
         int count = 0;
 
         for (LottoNumber number : lottoGame.getNumbers()) {
