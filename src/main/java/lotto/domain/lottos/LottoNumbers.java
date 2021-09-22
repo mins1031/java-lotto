@@ -1,22 +1,24 @@
 package lotto.domain.lottos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoNumbers {
 
-    private static List<LottoNo> lottoNumberList = new ArrayList<>();
+    private static final List<LottoNumber> lottoNumbers = initLottoNumbers();
 
-    private static void init(){
+    private static List<LottoNumber> initLottoNumbers() {
+        List<LottoNumber> initList = new ArrayList<>();
+
         for (int i = 1; i< 46; i++){
-            lottoNumberList.add(new LottoNo(i));
+            initList.add(LottoNumber.from(i));
         }
+
+        return Collections.unmodifiableList(initList);
     }
 
-    public static List<LottoNo> getInstance(){
-        if (lottoNumberList.size() == 0) {
-            init();
-        }
-        return lottoNumberList;
+    public static List<LottoNumber> getLottoNumbers() {
+        return lottoNumbers;
     }
 }

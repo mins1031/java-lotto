@@ -1,59 +1,32 @@
 package lotto.scanner;
 
-import lotto.domain.lottos.LottoGame;
-import lotto.domain.lottos.LottoNo;
-import lotto.domain.lottos.LottoNumbers;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class InputScanner {
+    private static final Scanner scanner = new Scanner(System.in);
 
-    private static Scanner scanner = new Scanner(System.in);
-
-    public static int userNumberInput(String message) {
+    // 숫자 입력
+    public static int inputNumeric(String message) {
         System.out.println(message);
         String next = scanner.next();
-        scanner.nextLine();
+        scanner.nextLine(); // remove '\n'
         return Integer.parseInt(next);
     }
 
-    public static List<LottoGame> userLottoInput(int manualCount) {
-
-        List<LottoNo> lottoNumbers = LottoNumbers.getInstance();
-        List<LottoGame> parseManualNumbers = new ArrayList<>();
-
-        for(int i = 0; i < manualCount; ++i) {
-            String inputNumbers = scanner.nextLine();
-
-            List<Integer> tempInputs = Stream.of(inputNumbers.split("\\s*,\\s*"))
-                    .distinct()
-                    .map(Integer::parseInt).collect(Collectors.toList());
-
-            validateInput(tempInputs);
-
-            List<LottoNo> numList = tempInputs.stream().map(x -> lottoNumbers.get(x - 1)).collect(Collectors.toList());
-            LottoGame game = new LottoGame();
-            game.addAll(numList);
-            parseManualNumbers.add(game);
-        }
-
-        return parseManualNumbers;
+    // 라인 입력
+    public static String inputString(String message) {
+        return inputStrings(message, 1).get(0);
     }
 
-    public static void validateInput(List<Integer> input) {
-        List<Integer> inRangeValidate = input.stream().filter(x -> (x > 0 && x < 46)).collect(Collectors.toList());
-        if (input.size() != 6) {
-            throw new IllegalArgumentException("중복된 숫자는 입력하실 수 없습니다.");
+    // 멀티 라인 입력
+    public static List<String> inputStrings(String message, int iterator) {
+        System.out.println(message);
+        List<String> strings = new ArrayList<>();
+        for (int i = 0; i < iterator; ++i) {
+            strings.add(scanner.nextLine());
         }
-        if (inRangeValidate.size() != 6) {
-            throw new IllegalArgumentException("1 - 45 이내의 숫자만 입력하실 수 있습니다.");
-        }
+        return strings;
     }
-
-
-
 }
