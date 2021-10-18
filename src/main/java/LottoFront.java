@@ -6,6 +6,7 @@ public class LottoFront {
     public static void main(String[] args) {
         int totalBuyMoney = InputUtil.inputTotalBuyMoney();
         Buyer buyer = new Buyer(totalBuyMoney);
-        InputUtil.inputManualLottoCount();
+        int manualLottoCount = InputUtil.inputManualLottoCount(buyer.getTotalLottoCount());
+
     }
 }

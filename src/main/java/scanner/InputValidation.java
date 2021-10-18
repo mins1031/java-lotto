@@ -12,7 +12,7 @@ public class InputValidation {
 
     public static void validateManualLottoCount(int manualLottoCount, int totalLottoCount) {
         if (manualLottoCount < 0 || manualLottoCount > totalLottoCount) {
-            throw new TotalMoneyException("구매금액은 0을 넘어야 합니다.");
+            throw new TotalMoneyException("수동로또 갯수는 0이상," + totalLottoCount + "이하여야 합니다.");
         }
     }
 }
