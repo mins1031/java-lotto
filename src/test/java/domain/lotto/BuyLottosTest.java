@@ -28,6 +28,5 @@ class BuyLottosTest {
         //then
         Assertions.assertThat(lottoNums).hasSize(3);
         Assertions.assertThat(lottoNums.get(0).getClass()).isEqualTo(LottoNum.class);
-
     }
 }
