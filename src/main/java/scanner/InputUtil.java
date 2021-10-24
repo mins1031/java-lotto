@@ -27,9 +27,10 @@ public class InputUtil {
 
     public static List<String> inputManualLottoNums(int manualLottoCount) {
         System.out.println(MANUALLOTTONUMS_MESSAGE);
+        scanner.nextLine();
         List<String> rawManualLottos = new ArrayList<>();
         for (int i = 0; i < manualLottoCount; i++) {
-           rawManualLottos.add(scanner.next());
+            rawManualLottos.add(scanner.nextLine());
         }
         return rawManualLottos;
     }

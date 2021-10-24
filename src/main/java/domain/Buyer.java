@@ -1,6 +1,6 @@
 package domain;
 
-import domain.lotto.LottoInfo;
+import domain.lotto.LottoMarket;
 
 public class Buyer {
     private int totalBuyMoney;
@@ -8,7 +8,7 @@ public class Buyer {
 
     public Buyer(int totalBuyMoney) {
         this.totalBuyMoney = totalBuyMoney;
-        this.totalLottoCount = totalBuyMoney / LottoInfo.LOTTO_PRICE;
+        this.totalLottoCount = totalBuyMoney / LottoMarket.LOTTO_PRICE;
     }
 
     public int getTotalBuyMoney() {

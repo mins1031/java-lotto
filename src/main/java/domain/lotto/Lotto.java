@@ -18,4 +18,15 @@ public class Lotto {
         lotto.addAll(lottoNums);
     }
 
+    @Override
+    public String toString() {
+        return "[" +
+                lotto.get(0).getNum() + ", " +
+                lotto.get(1).getNum() + ", " +
+                lotto.get(2).getNum() + ", " +
+                lotto.get(3).getNum() + ", " +
+                lotto.get(4).getNum() + ", " +
+                lotto.get(5).getNum() + "]"
+                ;
+    }
 }
