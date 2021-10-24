@@ -2,6 +2,7 @@ import domain.Buyer;
 import domain.lotto.Lotto;
 import domain.lotto.LottoMarket;
 import domain.lotto.LottoNum;
+import domain.win.WinCondition;
 import scanner.InputUtil;
 
 public class LottoFront {
@@ -14,12 +15,14 @@ public class LottoFront {
         LottoMarket lottoMarket = new LottoMarket();
         lottoMarket.saveManualLottoNums(InputUtil.inputManualLottoNums(manualLottoCount));
         lottoMarket.generateAutoLottos(autoLottoCount);
-        int i = 0;
+        System.out.println("수동으로 " + manualLottoCount + "장, 자동으로 " + autoLottoCount + "장을 구매했습니다.");
         for (Lotto lotto : lottoMarket.getLottos()) {
-            /*for (LottoNum lottoNum : lotto.getLotto()) {
-                System.out.println(lottoNum.getNum());
-            }*/
             System.out.println(lotto.toString());
         }
+
+        WinCondition winCondition = new WinCondition(
+                InputUtil.inputWinNums(),
+                InputUtil.inputBonusBall()
+        )
     }
 }
