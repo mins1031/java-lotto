@@ -6,5 +6,16 @@ import java.util.List;
 public class Lotto {
     private List<LottoNum> lotto = new ArrayList<>();
 
+    public List<LottoNum> getLotto() {
+        return lotto;
+    }
+
+    public void add(LottoNum lottoNum) {
+        lotto.add(lottoNum);
+    }
+
+    public void addAll(List<LottoNum> lottoNums) {
+        lotto.addAll(lottoNums);
+    }
 
 }
