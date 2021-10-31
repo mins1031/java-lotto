@@ -1,19 +1,25 @@
 package domain.rank;
 
-public enum Ranking {
-    FIRST(1,6, false),
-    SECOND(2,5, true),
-    THIRD(3,5, false),
-    FOURTH(4,4, false),
-    FIVETH(5,3, false);
+import domain.lotto.Lotto;
+import domain.win.WinCondition;
 
-    private int rank;
+public enum Ranking {
+    FIRST(2000000000, 6, false),
+    SECOND(30000000, 5, true),
+    THIRD(1500000, 5, false),
+    FOURTH(50000, 4, false),
+    FIVTH(5000, 3, false);
+
+    private int prize;
     private int matchCount;
     private boolean bonusBall;
 
-    Ranking(int rank, int matchCount, boolean bonusBall) {
-        this.rank = rank;
+    Ranking(int prize, int matchCount, boolean bonusBall) {
+        this.prize = prize;
         this.matchCount = matchCount;
         this.bonusBall = bonusBall;
+    }
+
+    public static Ranking findRank(Lotto lotto, WinCondition winCondition) {
     }
 }
