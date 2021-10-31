@@ -1,9 +1,9 @@
 import domain.Buyer;
 import domain.lotto.Lotto;
 import domain.lotto.LottoMarket;
-import domain.lotto.LottoNum;
 import domain.win.WinCondition;
 import scanner.InputUtil;
+import domain.win.WinResult;
 
 public class LottoFront {
 
@@ -21,8 +21,10 @@ public class LottoFront {
         }
 
         WinCondition winCondition = new WinCondition(
-                InputUtil.inputWinNums(),
+                lottoMarket.toLottoNum(InputUtil.inputWinNums()),
                 InputUtil.inputBonusBall()
-        )
+        );
+
+        WinResult winResult;
     }
 }

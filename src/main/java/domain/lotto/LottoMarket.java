@@ -6,23 +6,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LottoMarket {
     private List<Lotto> lottos = new ArrayList<>();
     private static final int LOTTOS_SIZE = 6;
     public static final int LOTTO_PRICE = 1000;
 
-    public void saveManualLottoNums(List<String> rawManualLottoNums) {
+    public List<Lotto> saveManualLottoNums(List<String> rawManualLottoNums) {
         List<Lotto> manualLottos = new ArrayList<>();
         for (String rawManualLottoNum : rawManualLottoNums) {
             Lotto lotto = new Lotto();
-            lotto.addAll(StringParser.parseInputLottoNums(rawManualLottoNum).stream()
-                    .map(raw -> LottoNums.getLottoNumList().get(raw))
-                    .collect(Collectors.toList()));
+            lotto.addAll(toLottoNum(rawManualLottoNum));
             manualLottos.add(lotto);
         }
         lottos.addAll(manualLottos);
+        return manualLottos;
+    }
+
+    public List<LottoNum> toLottoNum(String rawManualLottoNum) {
+        return StringParser.parseInputLottoNums(rawManualLottoNum).stream()
+                .map(raw -> LottoNums.getLottoNumList().get(raw))
+                .collect(Collectors.toList());
     }
 
     public void generateAutoLottos(int autoLottoCount) {

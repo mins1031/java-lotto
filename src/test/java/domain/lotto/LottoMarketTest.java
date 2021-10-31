@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 class LottoMarketTest {
@@ -101,5 +102,22 @@ class LottoMarketTest {
         Assertions.assertThat(lottoMarket.getLottos()).hasSize(5);
         Assertions.assertThat(LottoNums.getLottoNumList())
                 .contains(lottoMarket.getLottos().get(0).getLotto().get(0));
+    }
+
+    @Test
+    void toLottoNumTest() {
+        //given
+        String rawNums = "31, 28, 5, 20, 45, 1";
+        LottoMarket lottoMarket = new LottoMarket();
+        //when
+        List<LottoNum> lottoNums = lottoMarket.toLottoNum(rawNums);
+        //then
+        Assertions.assertThat(lottoNums).hasSize(6);
+        Assertions.assertThat(lottoNums.get(0).getNum()).isEqualTo(31);
+        Assertions.assertThat(lottoNums.get(1).getNum()).isEqualTo(28);
+        Assertions.assertThat(lottoNums.get(2).getNum()).isEqualTo(5);
+        Assertions.assertThat(lottoNums.get(3).getNum()).isEqualTo(20);
+        Assertions.assertThat(lottoNums.get(4).getNum()).isEqualTo(45);
+        Assertions.assertThat(lottoNums.get(5).getNum()).isEqualTo(1);
     }
 }
