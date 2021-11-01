@@ -1,37 +1,19 @@
 package domain.win;
 
 import domain.lotto.Lotto;
+import domain.rank.Ranking;
 
 import java.util.List;
+import java.util.TreeMap;
 
 public class WinResult {
-    private int firstCount = 0;
-    private int secondCount = 0;
-    private int thirdCount = 0;
-    private int fourthCount = 0;
-    private int fivethCount = 0;
+    private TreeMap<Ranking, Integer> lottoResult = new TreeMap<>();
 
     public void matchWinCount(WinCondition winCondition, List<Lotto> lottos) {
-
+        for (Lotto lotto : lottos) {
+            Ranking ranking = Ranking.compareMatchCountAndBonusBall(winCondition.getLottoNums(), winCondition.getBonusBall(), lotto);
+        }
     }
 
-    public int getFirstCount() {
-        return firstCount;
-    }
 
-    public int getSecondCount() {
-        return secondCount;
-    }
-
-    public int getThirdCount() {
-        return thirdCount;
-    }
-
-    public int getFourthCount() {
-        return fourthCount;
-    }
-
-    public int getFivethCount() {
-        return fivethCount;
-    }
 }

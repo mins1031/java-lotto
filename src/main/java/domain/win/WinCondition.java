@@ -13,4 +13,12 @@ public class WinCondition {
         this.lottoNums = lottoNums;
         this.bonusBall = bonusBall;
     }
+
+    public List<LottoNum> getLottoNums() {
+        return lottoNums;
+    }
+
+    public int getBonusBall() {
+        return bonusBall;
+    }
 }

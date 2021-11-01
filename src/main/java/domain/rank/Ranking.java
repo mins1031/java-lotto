@@ -1,7 +1,10 @@
 package domain.rank;
 
 import domain.lotto.Lotto;
-import domain.win.WinCondition;
+import domain.lotto.LottoNum;
+
+import java.util.Arrays;
+import java.util.List;
 
 public enum Ranking {
     FIRST(2000000000, 6, false),
@@ -20,5 +23,21 @@ public enum Ranking {
         this.bonusBall = bonusBall;
     }
 
+    public static Ranking compareMatchCountAndBonusBall(List<LottoNum> winnums, int bonusBall, Lotto comapreLotto) {
+        long matchCount = winnums.stream()
+                .map(winnum -> comapreLotto.getLotto().contains(winnum))
+                .count();
+        boolean bonusBallResult = comapreLotto.getLotto().contains(bonusBall);
 
+        return arrangeRanking(matchCount, bonusBallResult);
+    }
+
+    private static Ranking arrangeRanking(long matchCount, boolean bonusBallResult) {
+        if (matchCount < 3) {
+            return null;
+        }
+        return Arrays.stream(Ranking.values())
+                .filter(ranking -> ranking.matchCount == matchCount && ranking.bonusBall == bonusBallResult)
+                .findFirst().orElse(null);
+    }
 }
