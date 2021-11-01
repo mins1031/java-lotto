@@ -20,6 +20,5 @@ public enum Ranking {
         this.bonusBall = bonusBall;
     }
 
-    public static Ranking findRank(Lotto lotto, WinCondition winCondition) {
-    }
+
 }
