@@ -2,6 +2,7 @@ package domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Lotto {
     private List<LottoNum> lotto = new ArrayList<>();
@@ -28,5 +29,18 @@ public class Lotto {
                 lotto.get(4).getNum() + ", " +
                 lotto.get(5).getNum() + "]"
                 ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lotto lotto1 = (Lotto) o;
+        return Objects.equals(lotto, lotto1.lotto);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lotto);
     }
 }

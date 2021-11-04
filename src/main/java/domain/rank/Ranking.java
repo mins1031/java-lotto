@@ -23,11 +23,11 @@ public enum Ranking {
         this.bonusBall = bonusBall;
     }
 
-    public static Ranking compareMatchCountAndBonusBall(List<LottoNum> winnums, int bonusBall, Lotto comapreLotto) {
+    public static Ranking compareMatchCountAndBonusBall(List<LottoNum> winnums, int bonusBall, Lotto compareLotto) {
         long matchCount = winnums.stream()
-                .map(winnum -> comapreLotto.getLotto().contains(winnum))
+                .filter(winnum -> compareLotto.getLotto().contains(winnum))
                 .count();
-        boolean bonusBallResult = comapreLotto.getLotto().contains(bonusBall);
+        boolean bonusBallResult = compareLotto.getLotto().contains((Integer) bonusBall);
 
         return arrangeRanking(matchCount, bonusBallResult);
     }
@@ -38,6 +38,18 @@ public enum Ranking {
         }
         return Arrays.stream(Ranking.values())
                 .filter(ranking -> ranking.matchCount == matchCount && ranking.bonusBall == bonusBallResult)
-                .findFirst().orElse(null);
+                .findAny().orElse(null);
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isBonusBall() {
+        return bonusBall;
     }
 }
