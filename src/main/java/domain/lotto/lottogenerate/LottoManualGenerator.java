@@ -1,5 +1,6 @@
 package domain.lotto.lottogenerate;
 
+import domain.Buyer;
 import domain.lotto.Lotto;
 import domain.lotto.LottoNum;
 import domain.lotto.LottoNums;
@@ -14,10 +15,10 @@ import java.util.stream.Collectors;
 
 public class LottoManualGenerator implements LottoGenerator{
     @Override
-    public List<Lotto> generate(int generateCount) {
-        List<String> rawManualLottoNums = InputUtil.inputManualLottoNums(generateCount);
-
+    public List<Lotto> generate(Buyer buyer) {
+        List<String> rawManualLottoNums = InputUtil.inputManualLottoNums(buyer.getManualLottoCount());
         List<Lotto> manualLottos = new ArrayList<>();
+
         for (String rawManualLottoNum : rawManualLottoNums) {
             Lotto lotto = new Lotto();
             lotto.addAll(toLottoNum(rawManualLottoNum));

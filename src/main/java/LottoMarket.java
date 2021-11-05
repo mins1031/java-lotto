@@ -10,19 +10,22 @@ import domain.win.WinResult;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoMarket {
 
     public static void main(String[] args) {
         int totalBuyMoney = InputUtil.inputTotalBuyMoney();
         Buyer buyer = new Buyer(totalBuyMoney);
-        int manualLottoCount = InputUtil.inputManualLottoCount(buyer.getTotalLottoCount());
-        int autoLottoCount = buyer.getTotalLottoCount() - manualLottoCount;
+        buyer.defineLottoCounts(InputUtil.inputManualLottoCount(buyer.getTotalLottoCount()));
+
+        List<LottoGenerator> lottoGenerators = Arrays.asList(new LottoManualGenerator(), new LottoAutoGenerator());
+        List<Lotto> buyLottos = buyer.getBuyLottos();
+        lottoGenerators.stream().forEach(generater -> buyLottos.addAll(generater.generate(buyer)));
+        System.out.println("수동으로 " + buyer.getManualLottoCount() + "장, 자동으로 " + buyer.getAutoLottoCount() + "장을 구매했습니다.");
+
         LottoFront lottoFront = new LottoFront();
-        lottoFront.saveManualLottoNums(InputUtil.inputManualLottoNums(manualLottoCount));
-        lottoFront.generateAutoLottos(autoLottoCount);
-        System.out.println("수동으로 " + manualLottoCount + "장, 자동으로 " + autoLottoCount + "장을 구매했습니다.");
-        for (Lotto lotto : lottoFront.getLottos()) {
+        for (Lotto lotto : buyLottos) {
             System.out.println(lotto.toString());
         }
 
@@ -32,7 +35,7 @@ public class LottoMarket {
         );
 
         WinResult winResult = new WinResult();
-        winResult.checkLottosResult(winCondition, lottoFront.getLottos(), buyer.getTotalBuyMoney());
+        winResult.checkLottosResult(winCondition, buyLottos, buyer.getTotalBuyMoney());
         System.out.println(winResult);
     }
 }

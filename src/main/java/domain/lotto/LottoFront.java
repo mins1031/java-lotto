@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class LottoFront {
     private List<Lotto> lottos = new ArrayList<>();
-    private static final int LOTTOS_SIZE = 6;
+    public static final int LOTTOS_SIZE = 6;
     public static final int LOTTO_PRICE = 1000;
 
     public List<Lotto> saveManualLottoNums(List<String> rawManualLottoNums) {
