@@ -1,12 +1,14 @@
 import domain.Buyer;
 import domain.lotto.Lotto;
 import domain.lotto.LottoFront;
+import domain.lotto.LottoNum;
 import domain.lotto.lottogenerate.LottoAutoGenerator;
 import domain.lotto.lottogenerate.LottoGenerator;
 import domain.lotto.lottogenerate.LottoManualGenerator;
 import domain.win.WinCondition;
 import scanner.InputUtil;
 import domain.win.WinResult;
+import scanner.OutputUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,27 +17,24 @@ import java.util.stream.Collectors;
 public class LottoMarket {
 
     public static void main(String[] args) {
-        int totalBuyMoney = InputUtil.inputTotalBuyMoney();
-        Buyer buyer = new Buyer(totalBuyMoney);
-        buyer.defineLottoCounts(InputUtil.inputManualLottoCount(buyer.getTotalLottoCount()));
-
         List<LottoGenerator> lottoGenerators = Arrays.asList(new LottoManualGenerator(), new LottoAutoGenerator());
-        List<Lotto> buyLottos = buyer.getBuyLottos();
-        lottoGenerators.stream().forEach(generater -> buyLottos.addAll(generater.generate(buyer)));
-        System.out.println("수동으로 " + buyer.getManualLottoCount() + "장, 자동으로 " + buyer.getAutoLottoCount() + "장을 구매했습니다.");
+        Buyer buyer = new Buyer(InputUtil.inputTotalBuyMoney());
 
-        LottoFront lottoFront = new LottoFront();
-        for (Lotto lotto : buyLottos) {
-            System.out.println(lotto.toString());
-        }
+        int manualLottoCount = InputUtil.inputManualLottoCount(buyer.getTotalLottoCount());
+        buyer.defineLottoCounts(manualLottoCount);
+
+        List<Lotto> buyLottos = buyer.getBuyLottos();
+        lottoGenerators.stream().forEach(generator -> buyLottos.addAll(generator.generate(buyer)));
+        OutputUtil.informLottoCount(buyer);
+        OutputUtil.informBuyLottos(buyLottos);
 
         WinCondition winCondition = new WinCondition(
-                lottoFront.toLottoNum(InputUtil.inputWinNums()),
+                LottoNum.toLottoNum(InputUtil.inputWinNums()),
                 InputUtil.inputBonusBall()
         );
 
         WinResult winResult = new WinResult();
-        winResult.checkLottosResult(winCondition, buyLottos, buyer.getTotalBuyMoney());
-        System.out.println(winResult);
+        winResult.checkLottosResult(winCondition, buyer.getBuyLottos(), buyer.getTotalBuyMoney());
+        OutputUtil.informWinStatistics(winResult);
     }
 }

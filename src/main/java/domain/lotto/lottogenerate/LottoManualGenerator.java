@@ -21,20 +21,11 @@ public class LottoManualGenerator implements LottoGenerator{
 
         for (String rawManualLottoNum : rawManualLottoNums) {
             Lotto lotto = new Lotto();
-            lotto.addAll(toLottoNum(rawManualLottoNum));
+            lotto.addAll(LottoNum.toLottoNum(rawManualLottoNum));
             manualLottos.add(lotto);
         }
 
         return manualLottos;
     }
 
-    public List<LottoNum> toLottoNum(String rawManualLottoNum) {
-        TreeSet<Integer> treeSet = new TreeSet<>(StringParser.parseInputLottoNums(rawManualLottoNum));
-        if (treeSet.size() != 6) {
-            throw new InputLottoNumsException();
-        }
-        return treeSet.stream()
-                .map(raw -> LottoNums.getLottoNumList().get(raw))
-                .collect(Collectors.toList());
-    }
 }

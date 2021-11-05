@@ -1,6 +1,12 @@
 package domain.lotto;
 
+import domain.parser.StringParser;
+import exception.lotto.InputLottoNumsException;
+
+import java.util.List;
 import java.util.Objects;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class LottoNum {
     private final int num;
@@ -15,6 +21,16 @@ public class LottoNum {
 
     public static LottoNum of(int num) {
         return new LottoNum(num);
+    }
+
+    public static List<LottoNum> toLottoNum(String rawManualLottoNum) {
+        TreeSet<Integer> treeSet = new TreeSet<>(StringParser.parseInputLottoNums(rawManualLottoNum));
+        if (treeSet.size() != 6) {
+            throw new InputLottoNumsException();
+        }
+        return treeSet.stream()
+                .map(raw -> LottoNums.getLottoNumList().get(raw))
+                .collect(Collectors.toList());
     }
 
     @Override

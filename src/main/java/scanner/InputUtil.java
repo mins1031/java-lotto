@@ -7,29 +7,23 @@ import java.util.Scanner;
 public class InputUtil {
 
     private static Scanner scanner = new Scanner(System.in);
-    private static final String TOTALMONEY_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String MANUALLOTTOCOUNT_MESSAGE = "수동으로 구매할 로또 수를 입력해 주세요.";
-    private static final String MANUALLOTTONUMS_MESSAGE = "수동으로 구매할 번호를 입력해 주세요.";
-    private static final String WINNUMBERS_MESSAGE = "지난 주 당첨 번호를 입력해 주세요.";
-    private static final String BONUSBALL_MESSAGE = "보너스 볼을 입력해 주세요.";
-
 
     public static int inputTotalBuyMoney() {
-        System.out.println(TOTALMONEY_MESSAGE);
+        System.out.println(OutputUtil.TOTALMONEY_MESSAGE);
         int totalMoney = Integer.parseInt(scanner.next());
         InputValidation.validateTotalMoney(totalMoney);
         return totalMoney;
     }
 
     public static int inputManualLottoCount(int totalLottoCount) {
-        System.out.println(MANUALLOTTOCOUNT_MESSAGE);
+        System.out.println(OutputUtil.MANUALLOTTOCOUNT_MESSAGE);
         int manualLottoCount = Integer.parseInt(scanner.next());
         InputValidation.validateManualLottoCount(manualLottoCount, totalLottoCount);
         return manualLottoCount;
     }
 
     public static List<String> inputManualLottoNums(int manualLottoCount) {
-        System.out.println(MANUALLOTTONUMS_MESSAGE);
+        System.out.println(OutputUtil.MANUALLOTTONUMS_MESSAGE);
         scanner.nextLine();
         List<String> rawManualLottos = new ArrayList<>();
         for (int i = 0; i < manualLottoCount; i++) {
@@ -39,12 +33,12 @@ public class InputUtil {
     }
 
     public static String inputWinNums() {
-        System.out.println(WINNUMBERS_MESSAGE);
+        System.out.println(OutputUtil.WINNUMBERS_MESSAGE);
         return scanner.nextLine();
     }
 
     public static int inputBonusBall() {
-        System.out.println(BONUSBALL_MESSAGE);
+        System.out.println(OutputUtil.BONUSBALL_MESSAGE);
         return scanner.nextInt();
     }
 
