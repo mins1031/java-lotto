@@ -25,6 +25,8 @@ public class LottoFront {
                 InputUtil.inputBonusBall()
         );
 
-        WinResult winResult;
+        WinResult winResult = new WinResult();
+        winResult.checkLottosResult(winCondition, lottoMarket.getLottos(), buyer.getTotalBuyMoney());
+        System.out.println(winResult);
     }
 }

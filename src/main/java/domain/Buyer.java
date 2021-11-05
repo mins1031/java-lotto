@@ -27,4 +27,8 @@ public class Buyer {
     public int getTotalLottoCount() {
         return totalLottoCount;
     }
+
+    public List<Lotto> getBuyLottos() {
+        return buyLottos;
+    }
 }
