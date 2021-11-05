@@ -6,10 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-class LottoMarketTest {
+class LottoFrontTest {
 
     @Test
     @DisplayName("수동 로또를 문자열 형태로 입력받아 진짜 리스트로 만들기")
@@ -24,29 +23,29 @@ class LottoMarketTest {
         rawManualLottos.add(raw2);
         rawManualLottos.add(raw3);
         //when
-        LottoMarket lottoMarket = new LottoMarket();
-        lottoMarket.saveManualLottoNums(rawManualLottos);
+        LottoFront lottoFront = new LottoFront();
+        lottoFront.saveManualLottoNums(rawManualLottos);
 
         //then
-        Assertions.assertThat(lottoMarket.getLottos()).hasSize(3);
-        Assertions.assertThat(lottoMarket.getLottos().get(0).getLotto().get(0).getNum()).isEqualTo(8);
-        Assertions.assertThat(lottoMarket.getLottos().get(0).getLotto().get(1).getNum()).isEqualTo(21);
-        Assertions.assertThat(lottoMarket.getLottos().get(0).getLotto().get(2).getNum()).isEqualTo(23);
-        Assertions.assertThat(lottoMarket.getLottos().get(0).getLotto().get(3).getNum()).isEqualTo(41);
-        Assertions.assertThat(lottoMarket.getLottos().get(0).getLotto().get(4).getNum()).isEqualTo(42);
-        Assertions.assertThat(lottoMarket.getLottos().get(0).getLotto().get(5).getNum()).isEqualTo(43);
-        Assertions.assertThat(lottoMarket.getLottos().get(1).getLotto().get(0).getNum()).isEqualTo(3);
-        Assertions.assertThat(lottoMarket.getLottos().get(1).getLotto().get(1).getNum()).isEqualTo(5);
-        Assertions.assertThat(lottoMarket.getLottos().get(1).getLotto().get(2).getNum()).isEqualTo(11);
-        Assertions.assertThat(lottoMarket.getLottos().get(1).getLotto().get(3).getNum()).isEqualTo(16);
-        Assertions.assertThat(lottoMarket.getLottos().get(1).getLotto().get(4).getNum()).isEqualTo(32);
-        Assertions.assertThat(lottoMarket.getLottos().get(1).getLotto().get(5).getNum()).isEqualTo(38);
-        Assertions.assertThat(lottoMarket.getLottos().get(2).getLotto().get(0).getNum()).isEqualTo(7);
-        Assertions.assertThat(lottoMarket.getLottos().get(2).getLotto().get(1).getNum()).isEqualTo(11);
-        Assertions.assertThat(lottoMarket.getLottos().get(2).getLotto().get(2).getNum()).isEqualTo(16);
-        Assertions.assertThat(lottoMarket.getLottos().get(2).getLotto().get(3).getNum()).isEqualTo(35);
-        Assertions.assertThat(lottoMarket.getLottos().get(2).getLotto().get(4).getNum()).isEqualTo(36);
-        Assertions.assertThat(lottoMarket.getLottos().get(2).getLotto().get(5).getNum()).isEqualTo(44);
+        Assertions.assertThat(lottoFront.getLottos()).hasSize(3);
+        Assertions.assertThat(lottoFront.getLottos().get(0).getLotto().get(0).getNum()).isEqualTo(8);
+        Assertions.assertThat(lottoFront.getLottos().get(0).getLotto().get(1).getNum()).isEqualTo(21);
+        Assertions.assertThat(lottoFront.getLottos().get(0).getLotto().get(2).getNum()).isEqualTo(23);
+        Assertions.assertThat(lottoFront.getLottos().get(0).getLotto().get(3).getNum()).isEqualTo(41);
+        Assertions.assertThat(lottoFront.getLottos().get(0).getLotto().get(4).getNum()).isEqualTo(42);
+        Assertions.assertThat(lottoFront.getLottos().get(0).getLotto().get(5).getNum()).isEqualTo(43);
+        Assertions.assertThat(lottoFront.getLottos().get(1).getLotto().get(0).getNum()).isEqualTo(3);
+        Assertions.assertThat(lottoFront.getLottos().get(1).getLotto().get(1).getNum()).isEqualTo(5);
+        Assertions.assertThat(lottoFront.getLottos().get(1).getLotto().get(2).getNum()).isEqualTo(11);
+        Assertions.assertThat(lottoFront.getLottos().get(1).getLotto().get(3).getNum()).isEqualTo(16);
+        Assertions.assertThat(lottoFront.getLottos().get(1).getLotto().get(4).getNum()).isEqualTo(32);
+        Assertions.assertThat(lottoFront.getLottos().get(1).getLotto().get(5).getNum()).isEqualTo(38);
+        Assertions.assertThat(lottoFront.getLottos().get(2).getLotto().get(0).getNum()).isEqualTo(7);
+        Assertions.assertThat(lottoFront.getLottos().get(2).getLotto().get(1).getNum()).isEqualTo(11);
+        Assertions.assertThat(lottoFront.getLottos().get(2).getLotto().get(2).getNum()).isEqualTo(16);
+        Assertions.assertThat(lottoFront.getLottos().get(2).getLotto().get(3).getNum()).isEqualTo(35);
+        Assertions.assertThat(lottoFront.getLottos().get(2).getLotto().get(4).getNum()).isEqualTo(36);
+        Assertions.assertThat(lottoFront.getLottos().get(2).getLotto().get(5).getNum()).isEqualTo(44);
     }
 
     @Test
@@ -62,11 +61,11 @@ class LottoMarketTest {
         rawManualLottos.add(raw2);
         rawManualLottos.add(raw3);
         //when
-        LottoMarket lottoMarket = new LottoMarket();
+        LottoFront lottoFront = new LottoFront();
 
         //then
         Assertions.assertThatThrownBy(() ->
-                lottoMarket.saveManualLottoNums(rawManualLottos))
+                lottoFront.saveManualLottoNums(rawManualLottos))
                 .isInstanceOf(InputLottoCountException.class);
     }
 
@@ -83,11 +82,11 @@ class LottoMarketTest {
         rawManualLottos.add(raw2);
         rawManualLottos.add(raw3);
         //when
-        LottoMarket lottoMarket = new LottoMarket();
+        LottoFront lottoFront = new LottoFront();
 
         //then
         Assertions.assertThatThrownBy(() ->
-                lottoMarket.saveManualLottoNums(rawManualLottos))
+                lottoFront.saveManualLottoNums(rawManualLottos))
                 .isInstanceOf(InputLottoCountException.class);
     }
 
@@ -96,21 +95,21 @@ class LottoMarketTest {
         //given
         int autoLottoCount = 5;
         //when
-        LottoMarket lottoMarket = new LottoMarket();
-        lottoMarket.generateAutoLottos(autoLottoCount);
+        LottoFront lottoFront = new LottoFront();
+        lottoFront.generateAutoLottos(autoLottoCount);
         //then
-        Assertions.assertThat(lottoMarket.getLottos()).hasSize(5);
+        Assertions.assertThat(lottoFront.getLottos()).hasSize(5);
         Assertions.assertThat(LottoNums.getLottoNumList())
-                .contains(lottoMarket.getLottos().get(0).getLotto().get(0));
+                .contains(lottoFront.getLottos().get(0).getLotto().get(0));
     }
 
     @Test
     void toLottoNumTest() {
         //given
         String rawNums = "31, 28, 5, 20, 45, 1";
-        LottoMarket lottoMarket = new LottoMarket();
+        LottoFront lottoFront = new LottoFront();
         //when
-        List<LottoNum> lottoNums = lottoMarket.toLottoNum(rawNums);
+        List<LottoNum> lottoNums = lottoFront.toLottoNum(rawNums);
         //then
         Assertions.assertThat(lottoNums).hasSize(6);
         Assertions.assertThat(lottoNums.get(0).getNum()).isEqualTo(31);

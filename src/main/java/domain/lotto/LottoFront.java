@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-public class LottoMarket {
+public class LottoFront {
     private List<Lotto> lottos = new ArrayList<>();
     private static final int LOTTOS_SIZE = 6;
     public static final int LOTTO_PRICE = 1000;
@@ -21,6 +21,7 @@ public class LottoMarket {
             lotto.addAll(toLottoNum(rawManualLottoNum));
             manualLottos.add(lotto);
         }
+
         lottos.addAll(manualLottos);
         return manualLottos;
     }
