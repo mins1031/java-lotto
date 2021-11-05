@@ -6,6 +6,8 @@ import java.util.Objects;
 
 public class Lotto {
     private List<LottoNum> lotto = new ArrayList<>();
+    public static final int LOTTOS_SIZE = 6;
+    public static final int LOTTO_PRICE = 1000;
 
     public List<LottoNum> getLotto() {
         return lotto;

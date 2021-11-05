@@ -1,18 +1,16 @@
 import domain.Buyer;
 import domain.lotto.Lotto;
-import domain.lotto.LottoFront;
 import domain.lotto.LottoNum;
 import domain.lotto.lottogenerate.LottoAutoGenerator;
 import domain.lotto.lottogenerate.LottoGenerator;
 import domain.lotto.lottogenerate.LottoManualGenerator;
 import domain.win.WinCondition;
-import scanner.InputUtil;
 import domain.win.WinResult;
+import scanner.InputUtil;
 import scanner.OutputUtil;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoMarket {
 

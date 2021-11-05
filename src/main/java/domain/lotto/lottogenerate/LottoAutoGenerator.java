@@ -2,7 +2,6 @@ package domain.lotto.lottogenerate;
 
 import domain.Buyer;
 import domain.lotto.Lotto;
-import domain.lotto.LottoFront;
 import domain.lotto.LottoNum;
 import domain.lotto.LottoNums;
 
@@ -26,7 +25,7 @@ public class LottoAutoGenerator implements LottoGenerator {
     private List<LottoNum> getRandomNums() {
         Random random = new Random();
         List<LottoNum> randomNums = new ArrayList<>();
-        for (int i = 0; i < LottoFront.LOTTOS_SIZE; i++) {
+        for (int i = 0; i < Lotto.LOTTOS_SIZE; i++) {
             randomNums.add(LottoNums.getLottoNumList().get(random.nextInt(45) + 1));
         }
         return randomNums;

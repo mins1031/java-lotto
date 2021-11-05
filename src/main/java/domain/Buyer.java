@@ -1,7 +1,6 @@
 package domain;
 
 import domain.lotto.Lotto;
-import domain.lotto.LottoFront;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ public class Buyer {
 
     public Buyer(int totalBuyMoney) {
         this.totalBuyMoney = totalBuyMoney;
-        this.totalLottoCount = totalBuyMoney / LottoFront.LOTTO_PRICE;
+        this.totalLottoCount = totalBuyMoney / Lotto.LOTTO_PRICE;
     }
 
     public void defineLottoCounts(int manualLottoCount) {

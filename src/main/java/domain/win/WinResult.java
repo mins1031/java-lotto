@@ -13,13 +13,9 @@ public class WinResult {
     private int profitRate = 0;
 
     public void checkLottosResult(WinCondition winCondition, List<Lotto> lottos, int buyMoney) {
-        for (Lotto lotto : lottos) {
-            Ranking ranking = Optional.ofNullable(Ranking.compareMatchCountAndBonusBall(winCondition.getLottoNums(), winCondition.getBonusBall(), lotto)).orElse(null);
-            if (ranking == null) {
-                continue;
-            }
-            lottoResult.put(ranking, ranking.getPrize());
-        }
+        lottos.stream().map(lotto -> Optional.ofNullable(Ranking.compareMatchCountAndBonusBall(winCondition.getLottoNums(), winCondition.getBonusBall(), lotto)))
+                .filter(ranking -> ranking.isPresent())
+                .forEach(ranking -> lottoResult.put(ranking.get(), ranking.get().getPrize()));
 
         calculateProfitRate(buyMoney);
     }
