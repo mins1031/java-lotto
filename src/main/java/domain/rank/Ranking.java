@@ -27,7 +27,7 @@ public enum Ranking {
         long matchCount = winnums.stream()
                 .filter(winnum -> compareLotto.getLotto().contains(winnum))
                 .count();
-        boolean bonusBallResult = compareLotto.getLotto().contains((Integer) bonusBall);
+        boolean bonusBallResult = compareLotto.getLotto().contains((LottoNum.of(bonusBall)));
 
         return arrangeRanking(matchCount, bonusBallResult);
     }

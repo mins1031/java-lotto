@@ -1,55 +1,27 @@
 package domain.win;
 
-import domain.lotto.Lotto;
-import domain.lotto.LottoNum;
-import domain.lotto.LottoNums;
+import domain.rank.Ranking;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 class WinResultTest {
 
     @Test
     void name() {
         //given
-        List<LottoNum> firstLottoNums = Arrays.asList(
-                LottoNum.of(20),
-                LottoNum.of(13),
-                LottoNum.of(5),
-                LottoNum.of(33),
-                LottoNum.of(9),
-                LottoNum.of(39)
-        );
-
-        List<LottoNum> thirdLottoNums = Arrays.asList(
-                LottoNum.of(20),
-                LottoNum.of(13),
-                LottoNum.of(5),
-                LottoNum.of(33),
-                LottoNum.of(45),
-                LottoNum.of(42)
-        );
-        Lotto lotto1 = new Lotto();
-        lotto1.addAll(firstLottoNums);
-        Lotto lotto2 = new Lotto();
-        lotto2.addAll(thirdLottoNums);
-
-        List<Lotto> lottos = new ArrayList<>();
-        lottos.add(lotto1);
-        lottos.add(lotto2);
-
-        WinCondition winCondition = new WinCondition(
-                firstLottoNums,
-                27
-        );
+        Map<Ranking, Integer> rankings = new HashMap<>();
+        rankings.put(Ranking.SECOND, Ranking.SECOND.getPrize());
+        rankings.put(Ranking.FOURTH, Ranking.FOURTH.getPrize());
+        int buyMoney = 10000;
+        int winPrize = Ranking.SECOND.getPrize() + Ranking.FOURTH.getPrize();
         //when
         WinResult winResult = new WinResult();
-        winResult.matchWinCount(winCondition, lottos);
+        winResult.setLottoResult(rankings);
+        winResult.calculateProfitRate(buyMoney);
         //then
-//        Assertions.assertThat(winResult.getFirstCount()).isEqualTo(1);
-//        Assertions.assertThat(winResult.getFourthCount()).isEqualTo(1);
+        Assertions.assertThat(winResult.getProfitRate()).isEqualTo(winPrize / buyMoney);
     }
 }
