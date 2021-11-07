@@ -13,7 +13,7 @@ public class WinResult {
     private int profitRate = 0;
 
     public void checkLottosResult(WinCondition winCondition, List<Lotto> lottos, int buyMoney) {
-        lottos.stream().map(lotto -> Optional.ofNullable(Ranking.compareMatchCountAndBonusBall(winCondition.getLottoNums(), winCondition.getBonusBall(), lotto)))
+        lottos.stream().map(lotto -> Optional.ofNullable(Ranking.compareMatchCountAndBonusBall(winCondition.getWinNumbers(), winCondition.getBonusBall(), lotto)))
                 .filter(ranking -> ranking.isPresent())
                 .forEach(ranking -> lottoResult.put(ranking.get(), ranking.get().getPrize()));
 
