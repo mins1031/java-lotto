@@ -20,7 +20,7 @@ public class LottoMarket {
         BuyMoney buyMoney = new BuyMoney(InputUtil.inputTotalBuyMoney());
         Buyer buyer = new Buyer(buyMoney);
 
-        int manualLottoCount = InputUtil.inputManualLottoCount(buyer.getTotalLottoCount());
+        String manualLottoCount = InputUtil.inputManualLottoCount();
         buyer.defineAllLottoCountTypes(manualLottoCount);
 
         List<Lotto> buyLottos = buyer.getBuyLottos();

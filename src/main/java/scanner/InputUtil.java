@@ -13,11 +13,9 @@ public class InputUtil {
         return scanner.next();
     }
 
-    public static int inputManualLottoCount(int totalLottoCount) {
+    public static String inputManualLottoCount() {
         System.out.println(OutputUtil.MANUALLOTTOCOUNT_MESSAGE);
-        int manualLottoCount = Integer.parseInt(scanner.next());
-        InputValidation.validateManualLottoCount(manualLottoCount, totalLottoCount);
-        return manualLottoCount;
+        return scanner.next();
     }
 
     public static List<String> inputManualLottoNums(int manualLottoCount) {

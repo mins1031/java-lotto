@@ -1,8 +1,6 @@
 package domain.money;
 
-import domain.Buyer;
-import exception.TotalMoneyException;
-import scanner.InputValidation;
+import exception.money.TotalMoneyException;
 
 public class BuyMoney {
     private int totalBuyMoney;
@@ -15,10 +13,16 @@ public class BuyMoney {
     public int toIntegerOfBuyMoney (String inputBuyMoney) {
         try {
             int totalMoney = Integer.parseInt(inputBuyMoney);
-            InputValidation.validateBuyMoney(totalMoney);
+            validateBuyMoney(totalMoney);
             return totalMoney;
         } catch (Exception e) {
             throw new TotalMoneyException("구매금액은 숫자여야 합니다.");
+        }
+    }
+
+    private void validateBuyMoney(int buyMoney) {
+        if (buyMoney <= 0) {
+            throw new TotalMoneyException("구매금액은 1이상 어야 합니다.");
         }
     }
 

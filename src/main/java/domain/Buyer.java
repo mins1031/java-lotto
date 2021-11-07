@@ -2,6 +2,8 @@ package domain;
 
 import domain.lotto.Lotto;
 import domain.money.BuyMoney;
+import exception.lotto.InputLottoTypeException;
+import exception.lotto.OutRangeInputManualLottoCount;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +21,29 @@ public class Buyer {
         this.totalLottoCount = buyMoney.getTotalBuyMoney() / Lotto.LOTTO_PRICE;
     }
 
-    public void defineAllLottoCountTypes(int manualLottoCount) {
-        this.manualLottoCount = manualLottoCount;
-        this.autoLottoCount = totalLottoCount - manualLottoCount;
+    public void defineAllLottoCountTypes(String rawManualLottoCount) {
+        int realManualLottoCount = toIntegerOfManualLottoCount(rawManualLottoCount);
+        this.manualLottoCount = realManualLottoCount;
+        this.autoLottoCount = totalLottoCount - realManualLottoCount;
     }
+
+    private int toIntegerOfManualLottoCount(String rawManualLottoCount) {
+        try {
+            int manualLottoCount = Integer.parseInt(rawManualLottoCount);
+            validateManualLottoCount(manualLottoCount, totalLottoCount);
+            return manualLottoCount;
+        } catch (NumberFormatException e) {
+            throw new InputLottoTypeException();
+        }
+    }
+
+    private void validateManualLottoCount(int manualLottoCount, int totalLottoCount) {
+        if (manualLottoCount <= 0 || manualLottoCount > totalLottoCount) {
+            int i = 0;
+            throw new OutRangeInputManualLottoCount();
+        }
+    }
+
 
     public void addAll(List<Lotto> lottos) {
         buyLottos.addAll(lottos);
