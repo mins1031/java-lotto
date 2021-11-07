@@ -33,16 +33,16 @@ public class LottoNum {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LottoNum lottoNum = (LottoNum) o;
-        return num == lottoNum.num;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(num);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        LottoNum lottoNum = (LottoNum) o;
+//        return num == lottoNum.num;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(num);
+//    }
 }

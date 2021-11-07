@@ -1,24 +1,25 @@
 package domain;
 
 import domain.lotto.Lotto;
+import domain.money.BuyMoney;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Buyer {
-    private int totalBuyMoney;
+    private BuyMoney buyMoney;
     private int totalLottoCount;
     private int manualLottoCount;
     private int autoLottoCount;
 
     private List<Lotto> buyLottos = new ArrayList<>();
 
-    public Buyer(int totalBuyMoney) {
-        this.totalBuyMoney = totalBuyMoney;
-        this.totalLottoCount = totalBuyMoney / Lotto.LOTTO_PRICE;
+    public Buyer(BuyMoney buyMoney) {
+        this.buyMoney = buyMoney;
+        this.totalLottoCount = buyMoney.getTotalBuyMoney() / Lotto.LOTTO_PRICE;
     }
 
-    public void defineLottoCounts(int manualLottoCount) {
+    public void defineAllLottoCountTypes(int manualLottoCount) {
         this.manualLottoCount = manualLottoCount;
         this.autoLottoCount = totalLottoCount - manualLottoCount;
     }
@@ -27,8 +28,8 @@ public class Buyer {
         buyLottos.addAll(lottos);
     }
 
-    public int getTotalBuyMoney() {
-        return totalBuyMoney;
+    public BuyMoney getBuyMoney() {
+        return buyMoney;
     }
 
     public int getTotalLottoCount() {

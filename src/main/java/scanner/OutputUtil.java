@@ -13,11 +13,11 @@ public class OutputUtil {
     public static final String WINNUMBERS_MESSAGE = "지난 주 당첨 번호를 입력해 주세요.";
     public static final String BONUSBALL_MESSAGE = "보너스 볼을 입력해 주세요.";
 
-    public static void informLottoCount(Buyer buyer) {
+    public static void informBuyLottosCount(Buyer buyer) {
         System.out.println("수동으로 " + buyer.getManualLottoCount() + "장, 자동으로 " + buyer.getAutoLottoCount() + "장을 구매했습니다.");
     }
 
-    public static void informBuyLottos(List<Lotto> buyLottos) {
+    public static void informBuyLottoNums(List<Lotto> buyLottos) {
         buyLottos.stream().forEach(System.out::println);
     }
 

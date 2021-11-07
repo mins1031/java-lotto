@@ -4,6 +4,7 @@ import domain.lotto.LottoNum;
 import domain.lotto.lottogenerate.LottoAutoGenerator;
 import domain.lotto.lottogenerate.LottoGenerator;
 import domain.lotto.lottogenerate.LottoManualGenerator;
+import domain.money.BuyMoney;
 import domain.win.WinCondition;
 import domain.win.WinResult;
 import scanner.InputUtil;
@@ -16,15 +17,17 @@ public class LottoMarket {
 
     public static void main(String[] args) {
         List<LottoGenerator> lottoGenerators = Arrays.asList(new LottoManualGenerator(), new LottoAutoGenerator());
-        Buyer buyer = new Buyer(InputUtil.inputTotalBuyMoney());
+        BuyMoney buyMoney = new BuyMoney(InputUtil.inputTotalBuyMoney());
+        Buyer buyer = new Buyer(buyMoney);
 
         int manualLottoCount = InputUtil.inputManualLottoCount(buyer.getTotalLottoCount());
-        buyer.defineLottoCounts(manualLottoCount);
+        buyer.defineAllLottoCountTypes(manualLottoCount);
 
         List<Lotto> buyLottos = buyer.getBuyLottos();
         lottoGenerators.stream().forEach(generator -> buyLottos.addAll(generator.generate(buyer)));
-        OutputUtil.informLottoCount(buyer);
-        OutputUtil.informBuyLottos(buyLottos);
+
+        OutputUtil.informBuyLottosCount(buyer);
+        OutputUtil.informBuyLottoNums(buyLottos);
 
         WinCondition winCondition = new WinCondition(
                 LottoNum.toLottoNum(InputUtil.inputWinNums()),
@@ -32,7 +35,7 @@ public class LottoMarket {
         );
 
         WinResult winResult = new WinResult();
-        winResult.checkLottosResult(winCondition, buyer.getBuyLottos(), buyer.getTotalBuyMoney());
+        winResult.checkLottosResult(winCondition, buyer.getBuyLottos(), buyer.getBuyMoney().getTotalBuyMoney());
         OutputUtil.informWinStatistics(winResult);
     }
 }

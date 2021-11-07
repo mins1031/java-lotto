@@ -8,11 +8,9 @@ public class InputUtil {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static int inputTotalBuyMoney() {
+    public static String inputTotalBuyMoney() {
         System.out.println(OutputUtil.TOTALMONEY_MESSAGE);
-        int totalMoney = Integer.parseInt(scanner.next());
-        InputValidation.validateTotalMoney(totalMoney);
-        return totalMoney;
+        return scanner.next();
     }
 
     public static int inputManualLottoCount(int totalLottoCount) {
