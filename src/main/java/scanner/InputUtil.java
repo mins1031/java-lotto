@@ -37,6 +37,4 @@ public class InputUtil {
         System.out.println(OutputUtil.BONUSBALL_MESSAGE);
         return scanner.nextInt();
     }
-
-
 }

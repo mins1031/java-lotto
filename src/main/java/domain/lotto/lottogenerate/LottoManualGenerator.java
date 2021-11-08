@@ -21,6 +21,4 @@ public class LottoManualGenerator implements LottoGenerator {
         }
         return manualLottos;
     }
-
-
 }

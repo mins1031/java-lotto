@@ -27,7 +27,7 @@ public enum Ranking {
         long matchCount = winnums.stream()
                 .filter(winnum -> compareLotto.getLotto().contains(winnum))
                 .count();
-        boolean bonusBallResult = compareLotto.getLotto().stream().filter(lotto -> lotto.getNum() == bonusBall).findAny().isPresent();
+        boolean bonusBallResult = compareLotto.getLotto().contains(LottoNum.of(bonusBall));
 
         return arrangeRanking(matchCount, bonusBallResult);
     }
@@ -37,7 +37,8 @@ public enum Ranking {
             return null;
         }
         return Arrays.stream(Ranking.values())
-                .filter(ranking -> ranking.matchCount == matchCount && ranking.bonusBall == bonusBallResult)
+                .filter(ranking ->
+                        (ranking.matchCount == matchCount && ranking.bonusBall == bonusBallResult) || ranking.matchCount == matchCount)
                 .findAny().orElse(null);
     }
 

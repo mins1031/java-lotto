@@ -8,6 +8,8 @@ import domain.lotto.LottoNums;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class LottoAutoGenerator implements LottoGenerator {
     @Override
@@ -24,10 +26,14 @@ public class LottoAutoGenerator implements LottoGenerator {
 
     private List<LottoNum> getRandomNums() {
         Random random = new Random();
-        List<LottoNum> randomNums = new ArrayList<>();
-        for (int i = 0; i < Lotto.LOTTOS_SIZE; i++) {
-            randomNums.add(LottoNums.getLottoNumList().get(random.nextInt(45) + 1));
+        TreeSet<Integer> treeSet = new TreeSet<>();
+
+        while (treeSet.size() != 6) {
+            treeSet.add(LottoNums.getLottoNumList().get(random.nextInt(45) + 1).getNum());
         }
-        return randomNums;
+
+        return treeSet.stream()
+                .map(raw -> LottoNums.getLottoNumList().get(raw))
+                .collect(Collectors.toList());
     }
 }

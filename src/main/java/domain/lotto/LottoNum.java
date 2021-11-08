@@ -5,6 +5,7 @@ import exception.lotto.WrongInputNumsException;
 import exception.lotto.OutsideInputNumException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -23,8 +24,8 @@ public class LottoNum {
         return new LottoNum(num);
     }
 
-    public static List<LottoNum> toLottoNum(String rawManualLottoNum) {
-        TreeSet<Integer> treeSet = new TreeSet<>(StringParser.parseInputLottoNums(rawManualLottoNum));
+    public static List<LottoNum> toLottoNum(String rawLottoNum) {
+        TreeSet<Integer> treeSet = new TreeSet<>(StringParser.parseInputLottoNums(rawLottoNum));
         verifyLottoNum(treeSet);
 
         return treeSet.stream()
@@ -40,5 +41,18 @@ public class LottoNum {
         if (treeSet.stream().filter(num -> num > 45 || num < 1).findAny().isPresent()) {
             throw new OutsideInputNumException();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LottoNum lottoNum = (LottoNum) o;
+        return num == lottoNum.num;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(num);
     }
 }
