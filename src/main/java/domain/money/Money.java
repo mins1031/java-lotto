@@ -2,15 +2,15 @@ package domain.money;
 
 import exception.money.TotalMoneyException;
 
-public class BuyMoney {
-    private int totalBuyMoney;
+public class Money {
+    private int buyMoney;
 
-    public BuyMoney(String totalBuyMoney) {
-        this.totalBuyMoney = toIntegerOfBuyMoney(totalBuyMoney);
+    public Money(String buyMoney) {
+        this.buyMoney = toIntegerOfBuyMoney(buyMoney);
     }
 
     //구매금액에 대한 검증을 위한 메서드
-    public int toIntegerOfBuyMoney (String inputBuyMoney) {
+    public int toIntegerOfBuyMoney(String inputBuyMoney) {
         try {
             int totalMoney = Integer.parseInt(inputBuyMoney);
             validateBuyMoney(totalMoney);
@@ -26,7 +26,7 @@ public class BuyMoney {
         }
     }
 
-    public int getTotalBuyMoney() {
-        return totalBuyMoney;
+    public int getBuyMoney() {
+        return buyMoney;
     }
 }

@@ -14,7 +14,7 @@ class LottoNumTest {
         //given
         String lotto = "2, 5, 19, 20, 30";
         //when & then
-        Assertions.assertThatThrownBy(() -> LottoNum.toLottoNum(lotto)).isInstanceOf(WrongInputNumsException.class);
+        Assertions.assertThatThrownBy(() -> Lotto.toLottoNum(lotto)).isInstanceOf(WrongInputNumsException.class);
     }
 
     @Test
@@ -23,7 +23,7 @@ class LottoNumTest {
         //given
         String lotto = "2, 5, 19, 20, 30, 46";
         //when & then
-        Assertions.assertThatThrownBy(() -> LottoNum.toLottoNum(lotto)).isInstanceOf(OutsideInputNumException.class);
+        Assertions.assertThatThrownBy(() -> Lotto.toLottoNum(lotto)).isInstanceOf(OutsideInputNumException.class);
     }
 
 }

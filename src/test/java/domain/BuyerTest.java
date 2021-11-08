@@ -1,12 +1,9 @@
 package domain;
 
-import domain.money.BuyMoney;
 import exception.lotto.OutRangeInputManualLottoCount;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BuyerTest {
 
@@ -15,7 +12,7 @@ class BuyerTest {
     void name() {
         //given
         String buyMoney = "15000";
-        Buyer buyer = new Buyer(new BuyMoney(buyMoney));
+        Buyer buyer = new Buyer(buyMoney);
         String rawManualNum = "16";
         //when & then
         Assertions.assertThatThrownBy(() -> buyer.defineAllLottoCountTypes(rawManualNum))

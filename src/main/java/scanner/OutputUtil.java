@@ -2,6 +2,7 @@ package scanner;
 
 import domain.Buyer;
 import domain.lotto.Lotto;
+import domain.rank.Ranking;
 import domain.win.WinResult;
 
 import java.util.List;
@@ -22,6 +23,15 @@ public class OutputUtil {
     }
 
     public static void informWinStatistics(WinResult winResult) {
-        System.out.println(winResult);
+        System.out.println(
+                "당첨 통계 \n" +
+                "--------- \n" +
+                "3개 일치 (" + Ranking.FIVTH.getPrize() + ")- " + winResult.getCount(Ranking.FIVTH) + "개\n" +
+                "4개 일치 (" + Ranking.FOURTH.getPrize() + ")- " + winResult.getCount(Ranking.FOURTH) + "개\n" +
+                "5개 일치 (" + Ranking.THIRD.getPrize() + ")- " + winResult.getCount(Ranking.THIRD) + "개\n" +
+                "5개, 보너스볼 일치 (" + Ranking.SECOND.getPrize() + ")- " + winResult.getCount(Ranking.SECOND) + "개\n" +
+                "6개 일치 (" + Ranking.FIRST.getPrize() + ")- " + winResult.getCount(Ranking.FIRST) + "개\n" +
+                "총 수익률은 " + winResult.getProfitRate() + "입니다."
+        );
     }
 }

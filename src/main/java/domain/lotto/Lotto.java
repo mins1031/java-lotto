@@ -1,24 +1,44 @@
 package domain.lotto;
 
+import domain.parser.StringParser;
+import exception.lotto.OutsideInputNumException;
+import exception.lotto.WrongInputNumsException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private List<LottoNum> lotto = new ArrayList<>();
-    public static final int LOTTOS_SIZE = 6;
-    public static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_SIZE = 6;
 
     public List<LottoNum> getLotto() {
         return lotto;
     }
 
-    public void add(LottoNum lottoNum) {
-        lotto.add(lottoNum);
-    }
-
     public void addAll(List<LottoNum> lottoNums) {
         lotto.addAll(lottoNums);
+    }
+
+    public static List<LottoNum> toLottoNum(String rawLottoNum) {
+        TreeSet<Integer> treeSet = new TreeSet<>(StringParser.parseInputLottoNums(rawLottoNum));
+        verifyLottoNum(treeSet);
+
+        return treeSet.stream()
+                .map(raw -> LottoNums.getLottoNumList().get(raw))
+                .collect(Collectors.toList());
+    }
+
+    private static void verifyLottoNum(TreeSet<Integer> treeSet) {
+        if (treeSet.size() != LOTTO_SIZE) {
+            throw new WrongInputNumsException();
+        }
+
+        if (treeSet.stream().filter(num -> num > LottoMarket.LOTTO_MAX_NUMBER || num < LottoMarket.LOTTO_MIN_NUMBER).findAny().isPresent()) {
+            throw new OutsideInputNumException();
+        }
     }
 
     @Override

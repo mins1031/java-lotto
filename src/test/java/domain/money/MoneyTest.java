@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class BuyMoneyTest {
+class MoneyTest {
 
     @Test
     @DisplayName("[예외] 구매금액이 0 인경우")
@@ -13,7 +13,7 @@ class BuyMoneyTest {
         //given
         String rawBuyMoney = "0";
         //when & then
-        Assertions.assertThatThrownBy(() -> new BuyMoney(rawBuyMoney)).isInstanceOf(TotalMoneyException.class);
+        Assertions.assertThatThrownBy(() -> new Money(rawBuyMoney)).isInstanceOf(TotalMoneyException.class);
     }
 
     @Test
@@ -22,7 +22,7 @@ class BuyMoneyTest {
         //given
         String rawBuyMoney = "-100";
         //when & then
-        Assertions.assertThatThrownBy(() -> new BuyMoney(rawBuyMoney)).isInstanceOf(TotalMoneyException.class);
+        Assertions.assertThatThrownBy(() -> new Money(rawBuyMoney)).isInstanceOf(TotalMoneyException.class);
     }
 
     @Test
@@ -31,6 +31,6 @@ class BuyMoneyTest {
         //given
         String rawBuyMoney = "char";
         //when & then
-        Assertions.assertThatThrownBy(() -> new BuyMoney(rawBuyMoney)).isInstanceOf(TotalMoneyException.class);
+        Assertions.assertThatThrownBy(() -> new Money(rawBuyMoney)).isInstanceOf(TotalMoneyException.class);
     }
 }

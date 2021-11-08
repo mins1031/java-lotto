@@ -24,25 +24,6 @@ public class LottoNum {
         return new LottoNum(num);
     }
 
-    public static List<LottoNum> toLottoNum(String rawLottoNum) {
-        TreeSet<Integer> treeSet = new TreeSet<>(StringParser.parseInputLottoNums(rawLottoNum));
-        verifyLottoNum(treeSet);
-
-        return treeSet.stream()
-                .map(raw -> LottoNums.getLottoNumList().get(raw))
-                .collect(Collectors.toList());
-    }
-
-    private static void verifyLottoNum(TreeSet<Integer> treeSet) {
-        if (treeSet.size() != 6) {
-            throw new WrongInputNumsException();
-        }
-
-        if (treeSet.stream().filter(num -> num > 45 || num < 1).findAny().isPresent()) {
-            throw new OutsideInputNumException();
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

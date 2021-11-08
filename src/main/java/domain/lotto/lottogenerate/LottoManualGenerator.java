@@ -2,7 +2,6 @@ package domain.lotto.lottogenerate;
 
 import domain.Buyer;
 import domain.lotto.Lotto;
-import domain.lotto.LottoNum;
 import scanner.InputUtil;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ public class LottoManualGenerator implements LottoGenerator {
 
         for (String rawManualLottoNum : rawManualLottoNums) {
             Lotto lotto = new Lotto();
-            lotto.addAll(LottoNum.toLottoNum(rawManualLottoNum));
+            lotto.addAll(Lotto.toLottoNum(rawManualLottoNum));
             manualLottos.add(lotto);
         }
         return manualLottos;

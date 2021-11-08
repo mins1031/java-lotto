@@ -13,9 +13,6 @@ public class LottoNums {
         }
     }
 
-    private LottoNums() {
-    }
-
     public static List<LottoNum> getLottoNumList() {
         return LOTTO_NUM_LIST;
     }

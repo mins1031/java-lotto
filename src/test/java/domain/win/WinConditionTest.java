@@ -1,5 +1,6 @@
 package domain.win;
 
+import domain.bonusball.BonusBall;
 import domain.lotto.LottoNum;
 import exception.win.DuplicateBonusBallWithWinNumbers;
 import org.assertj.core.api.Assertions;
@@ -20,7 +21,7 @@ class WinConditionTest {
         List<LottoNum> winNums = Arrays.stream(rawWinnums).mapToObj(num -> LottoNum.of(num)).collect(Collectors.toList());
         int bonusBall = 5;
         //when & then
-        Assertions.assertThatThrownBy(() -> new WinCondition(winNums, bonusBall))
+        Assertions.assertThatThrownBy(() -> new WinCondition(winNums, new BonusBall(bonusBall)))
                 .isInstanceOf(DuplicateBonusBallWithWinNumbers.class);
     }
 }
