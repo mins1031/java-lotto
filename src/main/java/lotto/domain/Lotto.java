@@ -1,94 +1,53 @@
 package lotto.domain;
 
+import lotto.stringUtils.StringUtils;
+import lotto.validator.LottoValidator;
+
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Lotto {
-    private static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_SIZE = 6;
 
-    private final int manualLotto;
-    private final int autoLotto;
-    private final Money money;
-    private final List<LottoGame> manualLottoGames;
-    private final List<LottoGame> autoLottoGames;
+    private final List<LottoNumber> lottoNumbers;
 
-    private Lotto(Money money, int manualLotto) {
-        validateLotto(money, manualLotto);
-
-        this.manualLotto = manualLotto;
-        this.autoLotto = (money.getMoney() / LOTTO_PRICE) - manualLotto;
-        this.money = money;
-        this.manualLottoGames = new ArrayList<>();
-        this.autoLottoGames = new ArrayList<>();
+    private Lotto (List<LottoNumber> lottoNumbers) {
+        this.lottoNumbers = lottoNumbers;
     }
 
-    private void validateLotto(Money money, int manualLotto) {
-        if (manualLotto < 0) {
-            throw new IllegalArgumentException("로또의 개수는 음수가 될 수 없습니다.");
-        }
-        if (money.getMoney() < LOTTO_PRICE * manualLotto) {
-            throw new IllegalArgumentException("로또 구매 가능 금액을 초과했습니다.");
-        }
+    public static Lotto from (List<LottoNumber> lottoNumbers) {
+        LottoValidator.validate(lottoNumbers);
+        return new Lotto(lottoNumbers);
     }
 
-    public static Lotto of(Money money, int manualLotto) {
-        return new Lotto(money, manualLotto);
+    public static Lotto parseLottoNumber(String lottoNumberInput) {
+        return from(Stream.of(StringUtils.splitByComma(lottoNumberInput))
+                .map(Integer::parseInt)
+                .distinct()
+                .sorted()
+                .map(LottoNumbers::getNumber)
+                .collect(Collectors.toList()));
     }
 
-    public void buyLottoManual (List<String> lineInputs) {
-        if (manualLottoGames.size() == manualLotto) {
-            System.out.println("수동 구매 가능 매수를 초과했습니다.");
-            return;
+    public static Lotto makeAutoLotto() {
+        Set<LottoNumber> tempSet = new TreeSet<>();
+
+        while(tempSet.size() != 6) {
+            tempSet.add(LottoNumbers.getRandomNumber());
         }
 
-        for (String lineInput : lineInputs) {
-            LottoGame lottoGame = LottoGame.parseLottoNumber(lineInput);
-            manualLottoGames.add(lottoGame);
-        }
+        List<LottoNumber> distinctList = new ArrayList<>(tempSet);
+        return from(distinctList);
     }
 
-    public void buyLottoAutomatic() {
-        if (autoLottoGames.size() == autoLotto) {
-            System.out.println("자동 구매 가능 매수를 초과했습니다.");
-            return;
-        }
-
-        for (int i = 0; i < autoLotto; ++i) {
-            autoLottoGames.add(LottoGame.newInstance());
-        }
+    public boolean contains (LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber);
     }
 
-    public void print() {
-        StringBuilder sb = new StringBuilder("수동으로 " + manualLotto + "장, 자동으로 " + autoLotto + "장을 구매했습니다.\n");
-
-        for (LottoGame lottoGame : manualLottoGames) {
-            sb.append(lottoGame);
-        }
-
-        for (LottoGame lottoGame : autoLottoGames) {
-            sb.append(lottoGame);
-        }
-
-        System.out.println(sb);
-    }
-
-    public int getManualLotto() {
-        return manualLotto;
-    }
-
-    public int getAutoLotto() {
-        return autoLotto;
-    }
-
-    public Money getMoney() {
-        return money;
-    }
-
-    public List<LottoGame> getManualLottoGames() {
-        return manualLottoGames;
-    }
-
-    public List<LottoGame> getAutoLottoGames() {
-        return autoLottoGames;
+    @Override
+    public String toString() {
+        return lottoNumbers.stream().map(Objects::toString).collect(Collectors.joining(", ", "[", "]\n"));
     }
 }
-

@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.domain.previous;
 
-public class LottoMatch {
+public class PreviousRank {
     public static final int ZERO = 0;
     public static final int ONE = 1;
     public static final int TWO = 2;

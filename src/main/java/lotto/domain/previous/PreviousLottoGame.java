@@ -1,13 +1,16 @@
-package lotto.domain;
+package lotto.domain.previous;
+
+import lotto.domain.LottoNumber;
+import lotto.domain.LottoNumbers;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LottoGame {
+public class PreviousLottoGame {
     private final List<LottoNumber> numbers;
 
-    private LottoGame(List<LottoNumber> lottoNumbers) {
+    private PreviousLottoGame(List<LottoNumber> lottoNumbers) {
         validateLottoGame(lottoNumbers);
 
         numbers = new ArrayList<>();
@@ -20,44 +23,36 @@ public class LottoGame {
         }
     }
 
-    public static LottoGame from(List<LottoNumber> lottoNumbers) {
-        return new LottoGame(lottoNumbers);
+    public static PreviousLottoGame from(List<LottoNumber> lottoNumbers) {
+        return new PreviousLottoGame(lottoNumbers);
     }
 
-    public static LottoGame newInstance() {
+    public static PreviousLottoGame newInstance() {
         Set<LottoNumber> tempSet = new TreeSet<>();
 
         while(tempSet.size() != 6) {
-            int randomValue = new Random().nextInt(45);
-            tempSet.add(LottoNumbers.getLottoNumbers().get(randomValue));
+            int randomValue = new Random().nextInt(45) + 1;
+            tempSet.add(LottoNumbers.getNumber(randomValue));
         }
 
         List<LottoNumber> distinctList = new ArrayList<>(tempSet);
-        return new LottoGame(distinctList);
+        return new PreviousLottoGame(distinctList);
     }
 
-    public static LottoGame parseLottoNumber(String stringInput) {
+    public static PreviousLottoGame parseLottoNumber(String stringInput) {
         List<LottoNumber> numbers = Stream.of(stringInput.split("\\s*,\\s*"))
                 .map(Integer::parseInt)
                 .distinct()
                 .sorted()
                 .filter(x -> (x > 0 && x < 46))
-                .map(x -> LottoNumbers.getLottoNumbers().get(x - 1))
+                .map(LottoNumbers::getNumber)
                 .collect(Collectors.toList());
 
-        return LottoGame.from(numbers);
+        return PreviousLottoGame.from(numbers);
     }
 
-    public int countMatch(LottoGame lottoGame) {
-        int count = 0;
-
-        for (LottoNumber number : lottoGame.getNumbers()) {
-            if (this.numbers.contains(number)) {
-                ++count;
-            }
-        }
-
-        return count;
+    public int countMatch(PreviousLottoGame lottoGame) {
+        return Long.valueOf(lottoGame.getNumbers().stream().filter(numbers::contains).count()).intValue();
     }
 
     @Override

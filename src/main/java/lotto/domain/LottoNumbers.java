@@ -1,24 +1,30 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import lotto.validator.LottoNumberValidator;
+
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoNumbers {
+    public static final int MIN_LOTTO_NUM = 1;
+    public static final int MAX_LOTTO_NUM = 45;
 
-    private static final List<LottoNumber> lottoNumbers = initLottoNumbers();
+    private static final Random rand;
+    private static final List<LottoNumber> lottoNumbers;
 
-    private static List<LottoNumber> initLottoNumbers() {
-        List<LottoNumber> initList = new ArrayList<>();
-
-        for (int i = 1; i< 46; ++i) {
-            initList.add(LottoNumber.from(i));
-        }
-
-        return Collections.unmodifiableList(initList);
+    static {
+        rand = new Random(System.currentTimeMillis());
+        lottoNumbers = IntStream.rangeClosed(MIN_LOTTO_NUM, MAX_LOTTO_NUM).mapToObj(LottoNumber::from).collect(Collectors.toList());
     }
 
-    public static List<LottoNumber> getLottoNumbers() {
-        return lottoNumbers;
+    public static LottoNumber getNumber(int number) {
+        LottoNumberValidator.validate(number);
+        return lottoNumbers.get(number - 1);
+    }
+
+    public static LottoNumber getRandomNumber() {
+        return getNumber(rand.nextInt(45) + 1);
     }
 }

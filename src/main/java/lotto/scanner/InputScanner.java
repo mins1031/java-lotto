@@ -3,6 +3,9 @@ package lotto.scanner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class InputScanner {
     private static final Scanner scanner = new Scanner(System.in);
@@ -10,9 +13,7 @@ public class InputScanner {
     // 숫자 입력
     public static int inputNumeric(String message) {
         System.out.println(message);
-        String next = scanner.next();
-        scanner.nextLine(); // remove '\n'
-        return Integer.parseInt(next);
+        return Integer.parseInt(scanner.nextLine());
     }
 
     // 라인 입력
@@ -23,10 +24,6 @@ public class InputScanner {
     // 멀티 라인 입력
     public static List<String> inputStrings(String message, int iterator) {
         System.out.println(message);
-        List<String> strings = new ArrayList<>();
-        for (int i = 0; i < iterator; ++i) {
-            strings.add(scanner.nextLine());
-        }
-        return strings;
+        return IntStream.range(0, iterator).mapToObj(x -> scanner.nextLine()).collect(Collectors.toList());
     }
 }

@@ -1,20 +1,16 @@
 package lotto.domain;
 
+import lotto.validator.LottoNumberValidator;
+
 public class LottoNumber implements Comparable<LottoNumber> {
-    private final int number ;
+    private final int number;
 
     private LottoNumber(int number) {
-        validateNumber(number);
         this.number = number;
     }
 
-    private void validateNumber(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("LottoNumber must be 1 to 45");
-        }
-    }
-
     public static LottoNumber from(int number) {
+        LottoNumberValidator.validate(number);
         return new LottoNumber(number);
     }
 

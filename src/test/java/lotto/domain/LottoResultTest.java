@@ -1,18 +1,18 @@
 package lotto.domain;
 
+import lotto.domain.previous.PreviousLotto;
+import lotto.domain.previous.PreviousLottoResult;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class LottoResultTest {
 
     @Test
     public void LottoResultTest() {
-        Lotto lotto = Lotto.of(Money.from(8000), 8);
+        PreviousLotto lotto = PreviousLotto.of(Money.from(8000), 8);
         List<String> manualLottoList = new ArrayList<>();
         manualLottoList.add("1, 2, 3, 4, 5, 6");
         manualLottoList.add("2, 3, 4, 5, 6, 7");
@@ -28,7 +28,7 @@ class LottoResultTest {
 
         lotto.buyLottoManual(manualLottoList);
 
-        LottoResult lottoResult = LottoResult.of(lotto, winningLotto, bonusBall);
+        PreviousLottoResult lottoResult = PreviousLottoResult.of(lotto, winningLotto, bonusBall);
 
         for (int i = 0; i < 8; ++i) {
             Assertions.assertEquals(1, lottoResult.getMatchArray()[i]);
